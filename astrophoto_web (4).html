@@ -1,0 +1,2141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap Astrophoto — Joey 2026</title>
+
+<!-- MathJax -->
+<script>
+MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════════════════════ */
+:root {
+  --void:      #1E2230;
+  --deep:      #222740;
+  --surface:   #262B3E;
+  --raised:    #303650;
+  --rim:       #3E4565;
+  --rim-soft:  #333858;
+
+  --nebula-1:  #534AB7;  /* purple */
+  --nebula-2:  #1D9E75;  /* teal */
+  --nebula-3:  #C4830A;  /* amber */
+  --nebula-4:  #C04520;  /* coral */
+
+  --star-white: #EDE9E0;
+  --star-warm:  #D0C8B0;
+  --text:       #B8B4AC;
+  --text-soft:  #7E7A74;
+  --text-dim:   #505060;
+
+  --s1: #534AB7; --s1-l: #EEEDFE; --s1-d: #2E2879;
+  --s2: #1D9E75; --s2-l: #E1F5EE; --s2-d: #064535;
+  --s3: #C4830A; --s3-l: #FAEEDA; --s3-d: #4A2800;
+  --s4: #C04520; --s4-l: #FAECE7; --s4-d: #5C1C07;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+
+  --r: 8px;
+  --r-lg: 14px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  background: var(--void);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* starfield css moved */
+
+/* ═══════════════════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(30,34,48,.88);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--rim);
+  padding: 0 32px;
+  display: flex; align-items: center; gap: 0;
+  height: 52px;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 600;
+  color: var(--star-white);
+  letter-spacing: .02em;
+  margin-right: 32px;
+  white-space: nowrap;
+}
+.nav-links {
+  display: flex; gap: 2px; flex: 1; overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 10px; font-weight: 400;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-soft);
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color .2s, background .2s;
+  border: none; background: none; cursor: pointer;
+}
+.nav-link:hover  { color: var(--star-white); background: var(--rim-soft); }
+.nav-link.active { color: var(--nebula-1); }
+
+/* ═══════════════════════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════════════════════ */
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+section { padding: 80px 0 60px; }
+section:first-of-type { padding-top: 120px; }
+
+/* ═══════════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════════ */
+.hero {
+  min-height: 100svh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: 0 28px;
+  max-width: 980px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--nebula-1); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before {
+  content: ''; width: 28px; height: 1px;
+  background: var(--nebula-1); display: block;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 9vw, 110px);
+  font-weight: 300; line-height: .95;
+  letter-spacing: -.02em;
+  color: var(--star-white);
+  margin-bottom: 12px;
+}
+.hero-title em { font-style: italic; color: var(--nebula-1); }
+.hero-sub {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: 300; font-style: italic;
+  color: var(--star-warm); margin-bottom: 36px;
+  max-width: 540px; line-height: 1.5;
+}
+.hero-stats {
+  display: flex; gap: 32px; flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.hero-stat {}
+.hero-stat-n {
+  font-family: var(--font-display);
+  font-size: 36px; font-weight: 600;
+  color: var(--star-white); display: block; line-height: 1;
+}
+.hero-stat-l {
+  font-family: var(--font-mono);
+  font-size: 9px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-soft); display: block; margin-top: 3px;
+}
+.hero-scroll {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--text-soft); letter-spacing: .12em;
+  display: flex; align-items: center; gap: 10px;
+  text-transform: uppercase; animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:.5} 50%{opacity:1} }
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION HEADERS
+═══════════════════════════════════════════════════════════ */
+.sec-label {
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--text-soft);
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 12px;
+}
+.sec-label::after { content:''; flex:1; height:1px; background:var(--rim); }
+.sec-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px,5vw,52px); font-weight: 300;
+  line-height: 1.1; color: var(--star-white);
+  margin-bottom: 18px; letter-spacing: -.01em;
+}
+.sec-title em { font-style: italic; }
+.sec-body { font-size: 15px; line-height: 1.75; color: var(--text); max-width: 680px; }
+.sec-rule { height:1px; background: linear-gradient(90deg, var(--nebula-1), transparent); margin-bottom: 48px; }
+
+/* ═══════════════════════════════════════════════════════════
+   STAGE TABS
+═══════════════════════════════════════════════════════════ */
+.stage-tabs {
+  display: flex; gap: 6px; margin-bottom: 32px;
+  border-bottom: 1px solid var(--rim); padding-bottom: 0;
+  flex-wrap: wrap;
+}
+.stage-tab {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 10px 16px;
+  border: none; background: none; cursor: pointer;
+  color: var(--text-soft);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color .2s, border-color .2s;
+  display: flex; align-items: center; gap: 8px;
+}
+.stage-tab .tab-num {
+  width: 20px; height: 20px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+  background: var(--rim); color: var(--text-soft);
+  transition: background .2s, color .2s;
+}
+.stage-tab.active { color: var(--star-white); }
+.stage-tab[data-s="1"].active { border-color: var(--s1); }
+.stage-tab[data-s="1"].active .tab-num { background: var(--s1); color: #fff; }
+.stage-tab[data-s="2"].active { border-color: var(--s2); }
+.stage-tab[data-s="2"].active .tab-num { background: var(--s2); color: #fff; }
+.stage-tab[data-s="3"].active { border-color: var(--s3); }
+.stage-tab[data-s="3"].active .tab-num { background: var(--s3); color: #fff; }
+.stage-tab[data-s="4"].active { border-color: var(--s4); }
+.stage-tab[data-s="4"].active .tab-num { background: var(--s4); color: #fff; }
+
+.stage-panel { display: none; }
+.stage-panel.active { display: block; }
+
+/* ═══════════════════════════════════════════════════════════
+   STAGE HEADER CARD
+═══════════════════════════════════════════════════════════ */
+.stage-header-card {
+  border: 1px solid var(--rim);
+  border-radius: var(--r-lg);
+  padding: 24px 28px;
+  margin-bottom: 32px;
+  display: flex; align-items: center; gap: 20px;
+  position: relative; overflow: hidden;
+}
+.stage-header-card::before {
+  content: ''; position: absolute; inset: 0;
+  opacity: .06; pointer-events: none;
+}
+.shc-s1 { border-color: var(--s1); }
+.shc-s1::before { background: var(--s1); }
+.shc-s2 { border-color: var(--s2); }
+.shc-s2::before { background: var(--s2); }
+.shc-s3 { border-color: var(--s3); }
+.shc-s3::before { background: var(--s3); }
+.shc-s4 { border-color: var(--s4); }
+.shc-s4::before { background: var(--s4); }
+.shc-num {
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 26px; font-weight: 600;
+  color: #fff; flex-shrink: 0;
+}
+.shc-body { flex: 1; }
+.shc-title {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 400; color: var(--star-white);
+  margin-bottom: 3px;
+}
+.shc-sub {
+  font-family: var(--font-mono); font-size: 10.5px;
+  color: var(--text-soft); letter-spacing: .04em;
+}
+.shc-pill {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  padding: 6px 14px; border-radius: 20px; color: #fff; white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   THEORY ACCORDION
+═══════════════════════════════════════════════════════════ */
+.theory-section { margin-bottom: 32px; }
+.theory-label {
+  font-family: var(--font-mono); font-size: 9.5px;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--nebula-1); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.theory-label::after { content:''; flex:1; height:1px; background:var(--rim-soft); }
+
+.accordion {}
+.acc-item {
+  border: 1px solid var(--rim-soft);
+  border-radius: var(--r);
+  margin-bottom: 6px;
+  overflow: hidden;
+}
+.acc-header {
+  width: 100%; background: var(--surface);
+  border: none; cursor: pointer; padding: 14px 18px;
+  display: flex; justify-content: space-between; align-items: center;
+  text-align: left;
+}
+.acc-header:hover { background: var(--raised); }
+.acc-title {
+  font-family: var(--font-display); font-size: 16px; font-weight: 400;
+  color: var(--star-white); letter-spacing: .01em;
+}
+.acc-icon {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 1px solid var(--rim);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-soft); flex-shrink: 0;
+  font-size: 12px; transition: transform .3s;
+}
+.acc-item.open .acc-icon { transform: rotate(45deg); color: var(--nebula-1); border-color: var(--nebula-1); }
+.acc-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height .4s cubic-bezier(.4,0,.2,1);
+  background: var(--raised);
+}
+.acc-item.open .acc-body { max-height: 2000px; }
+.acc-content { padding: 20px 22px 22px; }
+
+/* Theory content styles */
+.theory-p { font-size: 14px; line-height: 1.8; color: var(--text); margin-bottom: 12px; }
+.theory-p:last-child { margin-bottom: 0; }
+.def-tag {
+  display: inline-block; background: rgba(83,74,183,.2);
+  border: 1px solid rgba(83,74,183,.4);
+  color: #A9A4E8; font-family: var(--font-mono);
+  font-size: 11px; padding: 1px 7px; border-radius: 4px;
+  margin: 0 2px;
+}
+.formula-box {
+  background: var(--surface); border: 1px solid var(--rim);
+  border-left: 3px solid var(--nebula-1);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 14px 18px; margin: 14px 0;
+  font-family: var(--font-mono); font-size: 13px;
+  color: #A9A4E8; overflow-x: auto;
+}
+.practice-box {
+  background: rgba(29,158,117,.08);
+  border: 1px solid rgba(29,158,117,.2);
+  border-left: 3px solid var(--nebula-2);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 14px 18px; margin: 14px 0;
+}
+.practice-label {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--nebula-2); margin-bottom: 7px;
+}
+.practice-p { font-size: 13.5px; color: #9DDBC5; line-height: 1.65; }
+.warn-box {
+  background: rgba(196,131,10,.08);
+  border: 1px solid rgba(196,131,10,.25);
+  border-left: 3px solid var(--nebula-3);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 14px 18px; margin: 14px 0;
+}
+.warn-label {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--nebula-3); margin-bottom: 7px;
+}
+.warn-p { font-size: 13.5px; color: #D4A860; line-height: 1.65; }
+
+/* ═══════════════════════════════════════════════════════════
+   SVG DIAGRAM CONTAINER
+═══════════════════════════════════════════════════════════ */
+.diagram-wrap {
+  background: var(--surface); border: 1px solid var(--rim);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  margin: 16px 0 24px;
+  overflow-x: auto;
+}
+.diagram-caption {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: .06em; color: var(--text-soft);
+  text-align: center; margin-top: 10px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   OBJECTIVE COMPARISON
+═══════════════════════════════════════════════════════════ */
+.obj-compare {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  margin: 16px 0;
+}
+.obj-lens {
+  border-radius: var(--r);
+  padding: 18px;
+  border: 1px solid;
+}
+.obj-lens.wide { border-color: #4A90C4; background: rgba(74,144,196,.07); }
+.obj-lens.tele { border-color: var(--nebula-1); background: rgba(83,74,183,.07); }
+.obj-lens-label {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--text-soft); display: block; margin-bottom: 4px;
+}
+.obj-lens-focal {
+  font-family: var(--font-display); font-size: 26px;
+  font-weight: 600; color: var(--star-white);
+  display: block; margin-bottom: 12px;
+}
+.obj-lens-list { list-style: none; }
+.obj-lens-list li {
+  font-size: 13px; color: var(--text);
+  padding: 3px 0; border-bottom: 1px solid var(--rim-soft);
+  display: flex; align-items: flex-start; gap: 8px;
+}
+.obj-lens-list li::before { content: '→'; color: var(--text-dim); flex-shrink: 0; margin-top: 2px; }
+.obj-lens-list li:last-child { border-bottom: none; }
+.obj-warn {
+  margin-top: 10px; font-size: 12px; font-style: italic;
+  color: var(--text-soft); padding-top: 8px;
+  border-top: 1px solid var(--rim-soft);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GEAR CARDS
+═══════════════════════════════════════════════════════════ */
+.gear-grid { display: grid; gap: 10px; margin-bottom: 24px; }
+.gear-card {
+  background: var(--surface); border: 1px solid var(--rim);
+  border-left: 3px solid var(--nebula-2);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 16px 18px;
+}
+.gc-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
+.gc-price { font-family: var(--font-mono); font-size: 11px; color: var(--nebula-2); }
+.gc-tag {
+  font-family: var(--font-mono); font-size: 9px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 3px;
+  background: rgba(29,158,117,.15); color: var(--nebula-2);
+  border: 1px solid rgba(29,158,117,.3);
+}
+.gc-name { font-family: var(--font-display); font-size: 16px; font-weight: 400; color: var(--star-white); margin-bottom: 6px; }
+.gc-desc { font-size: 13.5px; line-height: 1.65; color: var(--text); margin-bottom: 8px; }
+.gc-rule { height:1px; background:var(--rim-soft); margin-bottom:8px; }
+.gc-tips { font-size: 12.5px; font-style: italic; color: var(--text-soft); line-height: 1.55; }
+
+/* Parts list */
+.parts-list { display: flex; flex-direction: column; gap: 6px; margin: 10px 0; }
+.part-row {
+  display: grid; grid-template-columns: 200px 1fr 80px;
+  gap: 12px; padding: 8px 12px;
+  background: var(--raised); border-radius: var(--r);
+  border-left: 2px solid var(--rim);
+  align-items: start;
+}
+.part-name { font-size: 13px; font-weight: 500; color: var(--star-white); }
+.part-role { font-size: 12.5px; color: var(--text); line-height: 1.5; }
+.part-price { font-family: var(--font-mono); font-size: 11px; color: var(--nebula-2); text-align: right; }
+
+/* Build steps */
+.build-steps { display: flex; flex-direction: column; gap: 8px; margin: 12px 0; }
+.build-step { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; }
+.bstep-n {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--nebula-1); color: #fff;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+.bstep-body { font-size: 13.5px; color: var(--text); line-height: 1.65; }
+
+/* Budget row */
+.budget-row {
+  display: flex; flex-wrap: wrap;
+  border: 1px solid var(--rim); border-radius: var(--r);
+  overflow: hidden; margin-top: 16px;
+}
+.budget-item {
+  flex: 1; min-width: 120px;
+  padding: 12px 14px;
+  border-right: 1px solid var(--rim);
+}
+.budget-item:last-child { border-right: none; background: rgba(83,74,183,.1); }
+.budget-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-soft); display: block; margin-bottom: 4px; }
+.budget-val { font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--star-white); }
+.budget-item:last-child .budget-val { color: var(--nebula-1); }
+
+/* ═══════════════════════════════════════════════════════════
+   TARGET CARDS GRID
+═══════════════════════════════════════════════════════════ */
+.targets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+.target-card {
+  background: var(--surface);
+  border: 1px solid var(--rim);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: transform .2s, border-color .2s;
+  cursor: pointer;
+  position: relative;
+}
+.target-card:hover { transform: translateY(-3px); }
+.target-card.boss { border-color: var(--s1); }
+.target-card.boss-s2 { border-color: var(--s2); }
+.target-card.boss-s3 { border-color: var(--s3); }
+.target-card.boss-final { border: 2px solid var(--nebula-3); }
+
+/* Photo area */
+.tc-photo {
+  width: 100%; height: 160px;
+  background: var(--raised);
+  position: relative; overflow: hidden;
+}
+.tc-photo img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .4s;
+  filter: brightness(.85) saturate(1.1);
+}
+.target-card:hover .tc-photo img { transform: scale(1.04); }
+.tc-photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--surface), var(--raised));
+}
+.tc-photo-placeholder svg { opacity: .15; }
+
+.tc-badge {
+  position: absolute; top: 10px; right: 10px;
+  font-family: var(--font-mono); font-size: 9px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 3px; color: #fff;
+}
+.tc-badge.b1 { background: var(--s1); }
+.tc-badge.b2 { background: var(--s2); }
+.tc-badge.b3 { background: var(--s3); }
+.tc-badge.bf { background: var(--nebula-3); }
+
+.tc-lens-badge {
+  position: absolute; bottom: 10px; left: 10px;
+  font-family: var(--font-mono); font-size: 9px;
+  padding: 2px 7px; border-radius: 3px;
+  backdrop-filter: blur(6px);
+}
+.tc-lens-badge.wide { background: rgba(74,144,196,.7); color: #fff; }
+.tc-lens-badge.tele { background: rgba(83,74,183,.7); color: #fff; }
+.tc-lens-badge.both { background: rgba(29,158,117,.7); color: #fff; }
+.tc-lens-badge.newton { background: rgba(196,131,10,.7); color: #fff; }
+
+.tc-body { padding: 14px 16px; }
+.tc-cat {
+  font-family: var(--font-mono); font-size: 9.5px;
+  letter-spacing: .06em; color: var(--text-soft);
+  display: block; margin-bottom: 3px;
+}
+.tc-name {
+  font-family: var(--font-display); font-size: 17px;
+  font-weight: 400; color: var(--star-white);
+  margin-bottom: 6px; line-height: 1.2;
+}
+.tc-desc { font-size: 12.5px; color: var(--text); line-height: 1.6; margin-bottom: 10px; }
+.tc-rule { height:1px; background:var(--rim-soft); margin-bottom:8px; }
+.tc-method { font-size: 11.5px; font-style: italic; color: var(--text-soft); line-height: 1.5; }
+
+/* ═══════════════════════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(30,34,48,.92);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--surface); border: 1px solid var(--rim);
+  border-radius: var(--r-lg);
+  max-width: 680px; width: 100%;
+  max-height: 90svh; overflow-y: auto;
+  transform: translateY(12px);
+  transition: transform .25s;
+}
+.modal-overlay.open .modal { transform: translateY(0); }
+.modal-photo {
+  width: 100%; height: 280px;
+  position: relative; overflow: hidden;
+}
+.modal-photo img { width:100%; height:100%; object-fit:cover; filter: brightness(.9) saturate(1.15); }
+.modal-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(8,9,14,.7); border: 1px solid var(--rim);
+  color: var(--star-white); font-size: 16px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+}
+.modal-close:hover { background: var(--raised); }
+.modal-body { padding: 22px 24px; }
+.modal-cat {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-soft); margin-bottom: 4px;
+}
+.modal-name {
+  font-family: var(--font-display); font-size: 28px;
+  font-weight: 300; color: var(--star-white);
+  margin-bottom: 14px; line-height: 1.15;
+}
+.modal-desc { font-size: 14px; line-height: 1.75; color: var(--text); margin-bottom: 16px; }
+.modal-rule { height:1px; background:var(--rim-soft); margin-bottom:14px; }
+.modal-section-label {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--nebula-2); margin-bottom: 8px;
+}
+.modal-setup {
+  background: var(--raised); border-radius: var(--r);
+  padding: 14px 16px; margin-bottom: 12px;
+}
+.modal-setup-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+.msr-key { font-family: var(--font-mono); font-size: 11px; color: var(--text-soft); min-width: 90px; }
+.msr-val { font-size: 13px; color: var(--star-white); font-weight: 500; }
+.modal-source { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); margin-top: 16px; }
+
+/* ═══════════════════════════════════════════════════════════
+   INFO BOX
+═══════════════════════════════════════════════════════════ */
+.info-box {
+  border-radius: var(--r); padding: 14px 18px;
+  margin: 14px 0; font-size: 13.5px; line-height: 1.65;
+  border: 1px solid; border-left: 3px solid;
+}
+.ib-purple { background: rgba(83,74,183,.1); border-color: var(--s1); color: #C0BDED; }
+.ib-teal   { background: rgba(29,158,117,.1); border-color: var(--s2); color: #9DDBC5; }
+.ib-amber  { background: rgba(196,131,10,.1);  border-color: var(--s3); color: #D4A860; }
+.ib-coral  { background: rgba(192,69,32,.1);   border-color: var(--s4); color: #D49080; }
+
+/* ═══════════════════════════════════════════════════════════
+   DIFF / REMARKS
+═══════════════════════════════════════════════════════════ */
+.diff-list { display: flex; flex-direction: column; gap: 0; }
+.diff-item {
+  display: grid; grid-template-columns: 180px 1fr;
+  gap: 20px; padding: 14px 0;
+  border-bottom: 1px solid var(--rim-soft);
+}
+.diff-t { font-size: 13px; font-weight: 500; color: var(--nebula-3); line-height: 1.4; }
+.diff-b { font-size: 13.5px; color: var(--text); line-height: 1.65; }
+
+/* ═══════════════════════════════════════════════════════════
+   HORIZONS
+═══════════════════════════════════════════════════════════ */
+.horizons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.horizon-card {
+  border-radius: var(--r); padding: 18px;
+  border: 1px solid; border-left: 3px solid;
+}
+.hc-title { font-family: var(--font-display); font-size: 16px; font-weight: 400; color: var(--star-white); margin-bottom: 7px; }
+.hc-body { font-size: 13px; line-height: 1.65; }
+.hc-purple { background: rgba(83,74,183,.1); border-color: var(--s1); color: #C0BDED; }
+.hc-teal   { background: rgba(29,158,117,.1); border-color: var(--s2); color: #9DDBC5; }
+.hc-amber  { background: rgba(196,131,10,.1);  border-color: var(--s3); color: #D4A860; }
+.hc-coral  { background: rgba(192,69,32,.1);   border-color: var(--s4); color: #D49080; }
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════ */
+footer {
+  border-top: 1px solid var(--rim);
+  padding: 40px 28px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic; font-size: 16px;
+  color: var(--text-soft);
+  position: relative; z-index: 1;
+  max-width: 980px; margin: 0 auto;
+}
+footer cite { display: block; font-family: var(--font-mono); font-style: normal; font-size: 10px; letter-spacing: .1em; color: var(--text-dim); margin-top: 8px; }
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .obj-compare { grid-template-columns: 1fr; }
+  .diff-item { grid-template-columns: 1fr; gap: 4px; }
+  .part-row { grid-template-columns: 1fr; }
+  .part-price { text-align: left; }
+  .targets-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 20px; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb { background: var(--rim); border-radius: 3px; }
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHT MODE — PARCHEMIN
+═══════════════════════════════════════════════════════════ */
+[data-theme="light"] {
+  --void:       #F5F2EC;
+  --deep:       #EDE9E0;
+  --surface:    #E8E4D8;
+  --raised:     #E0DCD0;
+  --rim:        #CCCAB8;
+  --rim-soft:   #D4D0C4;
+  --star-white: #1E1C18;
+  --star-warm:  #3A3830;
+  --text:       #4A4840;
+  --text-soft:  #6A6660;
+  --text-dim:   #9A9890;
+  --nebula-1:   #534AB7;
+  --nebula-2:   #0F6E56;
+  --nebula-3:   #8A5A00;
+  --nebula-4:   #8A2800;
+  --s1: #534AB7; --s1-l: #EEEDFE; --s1-d: #2E2879;
+  --s2: #0F6E56; --s2-l: #D4EDE5; --s2-d: #064535;
+  --s3: #8A5A00; --s3-l: #F5E8C8; --s3-d: #4A2800;
+  --s4: #8A2800; --s4-l: #F5DDD5; --s4-d: #5C1C07;
+}
+
+[data-theme="light"] .acc-header { background: var(--surface); }
+[data-theme="light"] .acc-header:hover { background: var(--raised); }
+[data-theme="light"] .acc-body { background: var(--raised); }
+[data-theme="light"] .modal { background: var(--surface); }
+[data-theme="light"] .modal-close { background: rgba(245,242,236,.85); color: var(--star-white); }
+[data-theme="light"] .gear-card { background: var(--surface); border-color: var(--s2); }
+[data-theme="light"] .formula-box { background: var(--raised); color: #3C3489; }
+[data-theme="light"] .def-tag { background: rgba(83,74,183,.12); border-color: rgba(83,74,183,.3); color: #3C3489; }
+[data-theme="light"] .practice-box { background: rgba(15,110,86,.07); border-color: rgba(15,110,86,.2); }
+[data-theme="light"] .practice-p { color: #064535; }
+[data-theme="light"] .warn-box { background: rgba(138,90,0,.07); border-color: rgba(138,90,0,.25); }
+[data-theme="light"] .warn-p { color: #4A2800; }
+[data-theme="light"] .ib-purple { background: rgba(83,74,183,.08); color: #2E2879; }
+[data-theme="light"] .ib-teal   { background: rgba(15,110,86,.08); color: #064535; }
+[data-theme="light"] .ib-amber  { background: rgba(138,90,0,.08);  color: #4A2800; }
+[data-theme="light"] .ib-coral  { background: rgba(138,40,0,.08);  color: #5C1C07; }
+[data-theme="light"] .hc-purple { background: rgba(83,74,183,.07); color: #2E2879; }
+[data-theme="light"] .hc-teal   { background: rgba(15,110,86,.07); color: #064535; }
+[data-theme="light"] .hc-amber  { background: rgba(138,90,0,.07);  color: #4A2800; }
+[data-theme="light"] .hc-coral  { background: rgba(138,40,0,.07);  color: #5C1C07; }
+[data-theme="light"] .target-card { background: var(--surface); }
+[data-theme="light"] .target-card.boss { background: var(--s1-l); }
+[data-theme="light"] .theory-block { background: #EDE9E0; }
+[data-theme="light"] .stage-header-card::before { opacity: .04; }
+[data-theme="light"] .part-row { background: var(--raised); }
+[data-theme="light"] .budget-row { border-color: var(--rim); }
+[data-theme="light"] .budget-item { border-color: var(--rim-soft); }
+[data-theme="light"] .budget-item:last-child { background: rgba(83,74,183,.07); }
+[data-theme="light"] .modal-setup { background: var(--raised); }
+[data-theme="light"] .shc-s1 { background: #EEEDFE; }
+[data-theme="light"] .shc-s2 { background: #D4EDE5; }
+[data-theme="light"] .shc-s3 { background: #F5E8C8; }
+[data-theme="light"] .shc-s4 { background: #F5DDD5; }
+
+/* ═══════════════════════════════════════════════════════════
+   THEME TOGGLE
+═══════════════════════════════════════════════════════════ */
+.theme-toggle {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid var(--rim);
+  background: var(--raised);
+  color: var(--text-soft);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px;
+  transition: background .2s, border-color .2s;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { background: var(--surface); border-color: var(--nebula-1); }
+
+/* ═══════════════════════════════════════════════════════════
+   CELESTIAL GRID CANVAS
+═══════════════════════════════════════════════════════════ */
+#starfield {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none;
+}
+
+[data-theme="light"] nav {
+  background: rgba(245,242,236,.90);
+  border-color: var(--rim);
+}
+[data-theme="light"] .modal-overlay {
+  background: rgba(245,242,236,.88);
+}
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<!-- ═══ NAV ═══════════════════════════════════════════════════════════════ -->
+<nav>
+  <span class="nav-logo">Astrophoto</span>
+  <div class="nav-links">
+    <a class="nav-link" href="#intro">Intro</a>
+    <button class="nav-link" onclick="showSection('roadmap')">Roadmap</button>
+    <button class="nav-link" onclick="showSection('theory')">Théorie</button>
+    <button class="nav-link" onclick="showSection('gear')">Matériel</button>
+    <button class="nav-link" onclick="showSection('targets')">Cibles</button>
+    <button class="nav-link" onclick="showSection('remarks')">Remarques</button>
+    <button class="nav-link" onclick="showSection('beyond')">Au-delà</button>
+  </div>
+  <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" title="Basculer light/dark" aria-label="Basculer le thème">☀</button>
+</nav>
+
+<!-- ═══ HERO ══════════════════════════════════════════════════════════════ -->
+<div class="hero" id="intro">
+  <div class="hero-eyebrow">Document de référence · Joey 2026</div>
+  <h1 class="hero-title">Road<em>map</em><br>Astrophoto</h1>
+  <p class="hero-sub">Du barn door tracker à M1 en Hα — un voyage technique et cosmique de 2 à 3 ans.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="hero-stat-n">4</span><span class="hero-stat-l">Étapes</span></div>
+    <div class="hero-stat"><span class="hero-stat-n">22</span><span class="hero-stat-l">Cibles</span></div>
+    <div class="hero-stat"><span class="hero-stat-n">~1 400 €</span><span class="hero-stat-l">Budget total</span></div>
+    <div class="hero-stat"><span class="hero-stat-n">Bortle 3–4</span><span class="hero-stat-l">Sites Ardennes</span></div>
+  </div>
+  <div class="hero-scroll">↓ Explorer</div>
+</div>
+
+<!-- ═══ MAIN SECTIONS ══════════════════════════════════════════════════════ -->
+<main>
+
+<!-- ──────────────────────────── ROADMAP ──────────────────────────────── -->
+<section id="roadmap" class="wrap">
+  <div class="sec-label">Vue d'ensemble</div>
+  <h2 class="sec-title">La <em>Roadmap</em></h2>
+  <div class="sec-rule"></div>
+  <p class="sec-body">Chaque étape doit être <strong>épuisée</strong> avant de passer à la suivante. Les cibles boss sont des verrous : pas juste capturées, réussies — empilement propre, fond de ciel uniforme, détail visible. Le X-T4 n'est jamais défiltré. Sessions depuis les <strong>Ardennes belges (Bortle 3–4)</strong> pour le ciel profond, <strong>Tournai/Gaurain</strong> pour s'entraîner à la technique.</p>
+
+  <!-- Stage timeline -->
+  <div style="margin-top:40px; display:flex; flex-direction:column; gap:0;">
+    <div id="roadmap-stage-1" class="stage-timeline-item" onclick="goToStage(1)" style="cursor:pointer; display:grid; grid-template-columns:60px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--rim-soft); align-items:start;">
+      <div style="text-align:center;">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--s1);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:22px;font-weight:600;color:#fff;margin:0 auto;">1</div>
+        <div style="width:1px;height:40px;background:var(--rim);margin:6px auto 0;"></div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--s1);margin-bottom:4px;">25–50 €</div>
+        <div style="font-family:var(--font-display);font-size:20px;color:var(--star-white);margin-bottom:4px;">Barn door tracker + X-T4</div>
+        <div style="font-size:13px;color:var(--text-soft);">Grand champ, Voie Lactée, M42. Le tracker DIY compense la rotation terrestre. Objectifs : 18-50mm et 50-140mm selon la cible.</div>
+      </div>
+    </div>
+    <div id="roadmap-stage-2" class="stage-timeline-item" onclick="goToStage(2)" style="cursor:pointer; display:grid; grid-template-columns:60px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--rim-soft); align-items:start;">
+      <div style="text-align:center;">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--s2);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:22px;font-weight:600;color:#fff;margin:0 auto;">2</div>
+        <div style="width:1px;height:40px;background:var(--rim);margin:6px auto 0;"></div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--s2);margin-bottom:4px;">600–900 €</div>
+        <div style="font-family:var(--font-display);font-size:20px;color:var(--star-white);margin-bottom:4px;">Monture motorisée + tube</div>
+        <div style="font-size:13px;color:var(--text-soft);">HEQ5 Pro (occasion) + Newton 150/750. Poses de 2–3 min, galaxies et nébuleuses planétaires, goto automatique.</div>
+      </div>
+    </div>
+    <div id="roadmap-stage-3" class="stage-timeline-item" onclick="goToStage(3)" style="cursor:pointer; display:grid; grid-template-columns:60px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--rim-soft); align-items:start;">
+      <div style="text-align:center;">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--s3);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:22px;font-weight:600;color:#fff;margin:0 auto;">3</div>
+        <div style="width:1px;height:40px;background:var(--rim);margin:6px auto 0;"></div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--s3);margin-bottom:4px;">120–180 €</div>
+        <div style="font-family:var(--font-display);font-size:20px;color:var(--star-white);margin-bottom:4px;">Autoguideur</div>
+        <div style="font-size:13px;color:var(--text-soft);">ZWO ASI120MM Mini + lunette guide + PHD2 + NINA. Poses de 5–8 min, nébuleuses faibles, galaxies spirales détaillées.</div>
+      </div>
+    </div>
+    <div id="roadmap-stage-4" class="stage-timeline-item" onclick="goToStage(4)" style="cursor:pointer; display:grid; grid-template-columns:60px 1fr; gap:20px; padding:20px 0; align-items:start;">
+      <div style="text-align:center;">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--s4);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:22px;font-weight:600;color:#fff;margin:0 auto;">4</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--s4);margin-bottom:4px;">600–1 000 €</div>
+        <div style="font-family:var(--font-display);font-size:20px;color:var(--star-white);margin-bottom:4px;">Caméra mono + narrowband</div>
+        <div style="font-size:13px;color:var(--text-soft);">ZWO ASI294MM Pro + filtres Hα/OIII. Ciel profond depuis Tournai/Gaurain. Setup parallèle X-T4 possible. Objectif : M1.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────────── THEORY ───────────────────────────────── -->
+<section id="theory" class="wrap">
+  <div class="sec-label">Cours</div>
+  <h2 class="sec-title"><em>Théorie</em> par étape</h2>
+  <div class="sec-rule"></div>
+
+  <div class="stage-tabs">
+    <button class="stage-tab active" data-s="1" onclick="switchTheoryTab(1)"><span class="tab-num">1</span>Tracker</button>
+    <button class="stage-tab" data-s="2" onclick="switchTheoryTab(2)"><span class="tab-num">2</span>Monture</button>
+    <button class="stage-tab" data-s="3" onclick="switchTheoryTab(3)"><span class="tab-num">3</span>Guidage</button>
+    <button class="stage-tab" data-s="4" onclick="switchTheoryTab(4)"><span class="tab-num">4</span>Narrowband</button>
+  </div>
+
+  <div id="theory-1" class="stage-panel active">
+    <div class="theory-section">
+      <div class="theory-label">Étape 1 — cours théorique</div>
+      <div class="accordion">
+
+        <div class="acc-item open">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span class="acc-title">1.1 — Rotation terrestre & filé d'étoiles</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body"><div class="acc-content">
+            <p class="theory-p">La Terre tourne sur elle-même en <span class="def-tag">23h 56min 4s</span> (journée sidérale). De notre point de vue, c'est le ciel entier qui tourne à <strong style="color:var(--star-white)">15 arcseconde par seconde</strong>, soit 15°/heure. Sur trépied fixe, les étoiles tracent des arcs : le <span class="def-tag">filé d'étoiles</span>.</p>
+            <p class="theory-p">Une <span class="def-tag">arcseconde</span> (") est la 3 600e partie d'un degré. 1° = 60 <span class="def-tag">arcminutes</span> (') = 3 600". La pleine Lune fait ~30'. M42 fait 65'×60'. Ces unités mesurent la précision du suivi, la taille des objets, les erreurs de pointage.</p>
+            <div class="diagram-wrap">
+              <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:600px;display:block;margin:0 auto;">
+                <defs>
+                  <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+                    <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+                  </radialGradient>
+                </defs>
+                <!-- Fixed star (left) -->
+                <text x="30" y="30" fill="#7A7870" font-family="Space Mono" font-size="9" letter-spacing="1">TRÉPIED FIXE</text>
+                <circle cx="80" cy="100" r="4" fill="#fff"/>
+                <path d="M80 100 Q140 80 200 60" stroke="#C04520" stroke-width="1.5" fill="none" stroke-dasharray="4 3" opacity=".8"/>
+                <text x="160" y="55" fill="#C04520" font-family="Space Mono" font-size="8">filé</text>
+                <!-- Tracker (right) -->
+                <text x="310" y="30" fill="#7A7870" font-family="Space Mono" font-size="9" letter-spacing="1">BARN DOOR TRACKER</text>
+                <circle cx="400" cy="100" r="4" fill="#fff"/>
+                <circle cx="400" cy="100" r="8" fill="none" stroke="#1D9E75" stroke-width="1" opacity=".5"/>
+                <text x="350" y="130" fill="#1D9E75" font-family="Space Mono" font-size="8">étoile fixe ✓</text>
+                <!-- Arrow -->
+                <text x="240" y="105" fill="#534AB7" font-family="Space Mono" font-size="18">→</text>
+                <!-- Earth rotation indicator -->
+                <path d="M40 160 A30 30 0 0 1 100 160" stroke="#7A7870" stroke-width="1" fill="none" marker-end="url(#arr)"/>
+                <defs><marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#7A7870" stroke-width="1"/></marker></defs>
+                <text x="48" y="185" fill="#7A7870" font-family="Space Mono" font-size="8">15°/h</text>
+              </svg>
+              <div class="diagram-caption">Effet de la rotation terrestre sur les étoiles — sans vs avec suivi</div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span class="acc-title">1.2 — Règle NPF : durée de pose maximale</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body"><div class="acc-content">
+            <p class="theory-p">Sans suivi, la durée maximale avant filé visible (règle des 500) :</p>
+            <div class="formula-box">
+              \[ t_{max} = \frac{500}{f_{mm}} \]
+            </div>
+            <p class="theory-p">À 50mm → 10s. À 140mm → 3.6s. La règle NPF (plus précise) :</p>
+            <div class="formula-box">
+              \[ t = \frac{35 \cdot N + 30 \cdot p_{\mu m}}{f_{mm}} \cdot \frac{1}{\cos(\delta)} \]
+            </div>
+            <p class="theory-p">Où \(N\) = rapport f/, \(p_{\mu m}\) = taille du pixel en microns, \(\delta\) = déclinaison de la cible. X-T4 (3.76µm) à f/2.8, 140mm, \(\delta=0°\) → t ≈ 1.5s. Avec le tracker bien aligné → 60–90s.</p>
+            <div class="practice-box">
+              <div class="practice-label">Mise en pratique</div>
+              <div class="practice-p">Prendre une pose test de 30s. Vérifier à 100% de zoom les étoiles en coin de champ. Rondes = bon. Ovales = réduire la durée ou affiner l'alignement polaire. Les coins trahissent toujours en premier.</div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span class="acc-title">1.3 — Alignement polaire</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body"><div class="acc-content">
+            <p class="theory-p">Le pôle céleste nord est le point immobile du ciel (l'axe de rotation de la Terre prolongé). Polaris en est à moins de 1°. L'axe AR de la monture doit pointer exactement vers ce point. Une erreur génère une <span class="def-tag">rotation de champ</span> progressive.</p>
+            <div class="diagram-wrap">
+              <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:600px;display:block;margin:0 auto;">
+                <!-- Pole céleste -->
+                <circle cx="300" cy="20" r="5" fill="#EF9F27"/>
+                <text x="312" y="25" fill="#EF9F27" font-family="Space Mono" font-size="9">Pôle céleste</text>
+                <!-- Polaris -->
+                <circle cx="310" cy="38" r="3" fill="#fff" opacity=".7"/>
+                <text x="316" y="43" fill="#7A7870" font-family="Space Mono" font-size="8">Polaris (~1° d'écart)</text>
+                <!-- Polar axis line -->
+                <line x1="300" y1="25" x2="300" y2="200" stroke="#EF9F27" stroke-width="1" stroke-dasharray="4 4" opacity=".5"/>
+                <!-- Monture bien alignée -->
+                <g transform="translate(120,120)">
+                  <rect x="-25" y="-10" width="50" height="20" rx="4" fill="#1E2235" stroke="#1D9E75" stroke-width="1"/>
+                  <line x1="0" y1="-10" x2="0" y2="-100" stroke="#1D9E75" stroke-width="1.5" marker-end="url(#arr2)"/>
+                  <defs><marker id="arr2" markerWidth="6" markerHeight="6" refX="3" refY="6" orient="auto"><path d="M0,6 L3,0 L6,6" fill="#1D9E75"/></marker></defs>
+                  <text x="-22" y="5" fill="#1D9E75" font-family="Space Mono" font-size="7">monture</text>
+                  <text x="-30" y="35" fill="#1D9E75" font-family="Space Mono" font-size="8">✓ bien alignée</text>
+                </g>
+                <!-- Monture mal alignée -->
+                <g transform="translate(460,120)">
+                  <rect x="-25" y="-10" width="50" height="20" rx="4" fill="#1E2235" stroke="#C04520" stroke-width="1"/>
+                  <line x1="0" y1="-10" x2="-20" y2="-100" stroke="#C04520" stroke-width="1.5"/>
+                  <path d="M-20,-100 L300,-100" stroke="#C04520" stroke-width=".5" stroke-dasharray="2 2" opacity=".3"/>
+                  <text x="-22" y="5" fill="#C04520" font-family="Space Mono" font-size="7">monture</text>
+                  <text x="-40" y="35" fill="#C04520" font-family="Space Mono" font-size="8">✗ rotation de champ</text>
+                </g>
+                <!-- Labels -->
+                <text x="60" y="210" fill="#7A7870" font-family="Space Mono" font-size="9">Tournai/Gaurain — latitude 50.6°N → altitude pôle = 50.6°</text>
+              </svg>
+              <div class="diagram-caption">Impact d'un mauvais alignement polaire sur la rotation de champ</div>
+            </div>
+            <div class="practice-box">
+              <div class="practice-label">Méthode viseur polaire</div>
+              <div class="practice-p">Mettre la monture à l'heure exacte. Lancer Polar Finder. Placer Polaris dans le cercle à la position indiquée. Précision ~5–10 arcmin — suffisant pour le barn door.</div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span class="acc-title">1.4 — SNR, histogramme & exposition</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body"><div class="acc-content">
+            <p class="theory-p">Le <span class="def-tag">SNR</span> (Signal-to-Noise Ratio, rapport signal/bruit) est le rapport entre le signal utile et les fluctuations aléatoires. Il s'améliore avec la racine carrée du nombre de poses empilées :</p>
+            <div class="formula-box">
+              \[ \text{SNR} \propto \sqrt{N} \quad \Rightarrow \quad \text{×4 poses} = \text{×2 SNR} \]
+            </div>
+            <p class="theory-p">L'<span class="def-tag">histogramme</span> représente la distribution des valeurs de pixels (0 = noir, 65535 = blanc en 16 bits). Objectif : le pic du fond de ciel dans le tiers gauche (10–25%).</p>
+            <div class="diagram-wrap">
+              <svg viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;display:block;margin:0 auto;">
+                <!-- Axes -->
+                <line x1="40" y1="130" x2="520" y2="130" stroke="#3E3C38" stroke-width="1"/>
+                <line x1="40" y1="20" x2="40" y2="130" stroke="#3E3C38" stroke-width="1"/>
+                <!-- Labels -->
+                <text x="40" y="148" fill="#7A7870" font-family="Space Mono" font-size="8" text-anchor="middle">0</text>
+                <text x="520" y="148" fill="#7A7870" font-family="Space Mono" font-size="8" text-anchor="middle">65535</text>
+                <text x="20" y="75" fill="#7A7870" font-family="Space Mono" font-size="8" transform="rotate(-90,20,75)">fréq.</text>
+                <!-- Zone cible -->
+                <rect x="80" y="20" width="120" height="110" fill="rgba(29,158,117,.08)" stroke="rgba(29,158,117,.3)" stroke-width="1" stroke-dasharray="3 2"/>
+                <text x="140" y="15" fill="#1D9E75" font-family="Space Mono" font-size="8" text-anchor="middle">zone cible</text>
+                <!-- Histogram bars - good -->
+                <rect x="90" y="60" width="8" height="70" fill="rgba(29,158,117,.4)"/>
+                <rect x="100" y="35" width="8" height="95" fill="rgba(29,158,117,.7)"/>
+                <rect x="110" y="50" width="8" height="80" fill="rgba(29,158,117,.5)"/>
+                <rect x="120" y="75" width="8" height="55" fill="rgba(29,158,117,.3)"/>
+                <rect x="130" y="90" width="8" height="40" fill="rgba(29,158,117,.25)"/>
+                <rect x="140" y="100" width="8" height="30" fill="rgba(29,158,117,.2)"/>
+                <rect x="150" y="108" width="8" height="22" fill="rgba(29,158,117,.15)"/>
+                <rect x="160" y="115" width="8" height="15" fill="rgba(29,158,117,.1)"/>
+                <!-- Stars peak -->
+                <rect x="440" y="110" width="6" height="20" fill="rgba(255,255,255,.4)"/>
+                <rect x="448" y="100" width="6" height="30" fill="rgba(255,255,255,.6)"/>
+                <rect x="456" y="108" width="6" height="22" fill="rgba(255,255,255,.4)"/>
+                <text x="450" y="155" fill="#7A7870" font-family="Space Mono" font-size="8" text-anchor="middle">étoiles</text>
+                <!-- Arrows -->
+                <text x="290" y="75" fill="#C04520" font-family="Space Mono" font-size="8">← trop sombre</text>
+                <text x="290" y="95" fill="#C04520" font-family="Space Mono" font-size="8">→ risque saturation</text>
+              </svg>
+              <div class="diagram-caption">Histogramme idéal en astrophoto — pic fond de ciel dans le tiers gauche</div>
+            </div>
+            <div class="warn-box">
+              <div class="warn-label">Piège classique</div>
+              <div class="warn-p">Monter l'ISO au-delà du sweet spot (1600–3200 sur X-T4) n'améliore pas le SNR — ISO amplifie signal ET bruit dans les mêmes proportions. Ce qui améliore le SNR : plus de poses empilées, ciel plus sombre, poses plus longues.</div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span class="acc-title">1.5 — Frames de calibration : darks, flats, bias</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body"><div class="acc-content">
+            <p class="theory-p">Un capteur introduit des erreurs systématiques mesurables et corrigeables.</p>
+            <p class="theory-p"><strong style="color:var(--star-white)">Darks</strong> — <span class="def-tag">courant d'obscurité</span> (dark current) : électrons générés par la chaleur même sans lumière. Objectif bouché, même durée + ISO + température que les brutes. Attendre <strong style="color:var(--star-white)">30 min</strong> à l'extérieur avant de commencer — le capteur doit être à la température ambiante.</p>
+            <p class="theory-p"><strong style="color:var(--star-white)">Flats</strong> — <span class="def-tag">vignettage</span> + poussières. Surface éclairée uniformément, histogramme à 60–70%. À prendre en fin de session, avant de ranger.</p>
+            <p class="theory-p"><strong style="color:var(--star-white)">Bias</strong> — niveau de noir électronique. Durée minimale (1/8000s), objectif bouché, ~50 poses.</p>
+            <div class="diagram-wrap">
+              <svg viewBox="0 0 580 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:580px;display:block;margin:0 auto;">
+                <!-- Flow -->
+                <g>
+                  <rect x="10" y="35" width="90" height="50" rx="6" fill="#1E2235" stroke="#534AB7" stroke-width="1"/>
+                  <text x="55" y="57" fill="#A9A4E8" font-family="Space Mono" font-size="9" text-anchor="middle">BRUTES</text>
+                  <text x="55" y="72" fill="#7A7870" font-family="Space Mono" font-size="8" text-anchor="middle">lights</text>
+                </g>
+                <text x="108" y="63" fill="#3E3C38" font-size="18">−</text>
+                <g>
+                  <rect x="120" y="35" width="80" height="50" rx="6" fill="#1E2235" stroke="#7A7870" stroke-width="1"/>
+                  <text x="160" y="57" fill="#C8C4B8" font-family="Space Mono" font-size="9" text-anchor="middle">DARKS</text>
+                  <text x="160" y="72" fill="#7A7870" font-family="Space Mono" font-size="8" text-anchor="middle">thermique</text>
+                </g>
+                <text x="208" y="63" fill="#3E3C38" font-size="18">÷</text>
+                <g>
+                  <rect x="220" y="35" width="80" height="50" rx="6" fill="#1E2235" stroke="#7A7870" stroke-width="1"/>
+                  <text x="260" y="57" fill="#C8C4B8" font-family="Space Mono" font-size="9" text-anchor="middle">FLATS</text>
+                  <text x="260" y="72" fill="#7A7870" font-family="Space Mono" font-size="8" text-anchor="middle">vignettage</text>
+                </g>
+                <text x="308" y="63" fill="#3E3C38" font-size="18">−</text>
+                <g>
+                  <rect x="320" y="35" width="80" height="50" rx="6" fill="#1E2235" stroke="#7A7870" stroke-width="1"/>
+                  <text x="360" y="57" fill="#C8C4B8" font-family="Space Mono" font-size="9" text-anchor="middle">BIAS</text>
+                  <text x="360" y="72" fill="#7A7870" font-family="Space Mono" font-size="8" text-anchor="middle">offset</text>
+                </g>
+                <text x="408" y="63" fill="#3E3C38" font-size="18">=</text>
+                <g>
+                  <rect x="420" y="25" width="140" height="70" rx="6" fill="#0C1A14" stroke="#1D9E75" stroke-width="1.5"/>
+                  <text x="490" y="52" fill="#1D9E75" font-family="Space Mono" font-size="9" text-anchor="middle">IMAGE</text>
+                  <text x="490" y="67" fill="#9DDBC5" font-family="Space Mono" font-size="9" text-anchor="middle">CALIBRÉE</text>
+                  <text x="490" y="82" fill="#7A7870" font-family="Space Mono" font-size="8" text-anchor="middle">TIFF 16 bits</text>
+                </g>
+              </svg>
+              <div class="diagram-caption">Pipeline de calibration — opérations appliquées à chaque brute</div>
+            </div>
+            <div class="warn-box">
+              <div class="warn-label">Erreur la plus fréquente</div>
+              <div class="warn-p">Oublier les flats. Un vignettage non corrigé est impossible à corriger proprement en post-traitement. Ne jamais ranger le matériel sans avoir pris les flats.</div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span class="acc-title">1.6 — Empilement & sigma-clipping</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body"><div class="acc-content">
+            <p class="theory-p">L'empilement combine N brutes calibrées en une image au SNR amélioré de √N. La méthode naïve (moyenne simple) laisse passer les satellites et rayons cosmiques. Le <span class="def-tag">sigma-clipping</span> calcule µ et σ pour chaque pixel et rejette les valeurs hors de N×σ — les satellites deviennent des outliers éliminés automatiquement.</p>
+            <p class="theory-p">Spécificité X-T4 : capteur <span class="def-tag">X-Trans</span> (matrice 6×6 non standard). Dans Siril, sélectionner impérativement <strong style="color:var(--star-white)">"X-Trans (Fujifilm)"</strong> dans les options de debayering. Exporter en <strong style="color:var(--star-white)">TIFF 16 bits</strong> — l'image linéaire paraît quasi noire, c'est normal.</p>
+          </div></div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span class="acc-title">1.7 — Masque de Bahtinov & mise au point</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body"><div class="acc-content">
+            <p class="theory-p">Le <span class="def-tag">masque de Bahtinov</span> (Pavel Bahtinov, 2005) crée par diffraction trois pics lumineux sur chaque étoile. La mise au point est parfaite quand le pic central est exactement centré entre les deux pics latéraux.</p>
+            <div class="diagram-wrap">
+              <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:400px;display:block;margin:0 auto;">
+                <!-- Defocused left -->
+                <circle cx="90" cy="90" r="35" fill="none" stroke="#534AB7" stroke-width="1.5" opacity=".3"/>
+                <circle cx="90" cy="90" r="20" fill="none" stroke="#534AB7" stroke-width="1" opacity=".5"/>
+                <circle cx="90" cy="90" r="8" fill="none" stroke="#534AB7" stroke-width="1"/>
+                <circle cx="90" cy="90" r="2" fill="#534AB7"/>
+                <text x="90" y="148" fill="#C04520" font-family="Space Mono" font-size="9" text-anchor="middle">MAP incorrecte</text>
+                <!-- Good focus middle -->
+                <circle cx="200" cy="90" r="3" fill="#fff"/>
+                <line x1="185" y1="60" x2="215" y2="120" stroke="#fff" stroke-width="1.5" opacity=".9"/>
+                <line x1="215" y1="60" x2="185" y2="120" stroke="#fff" stroke-width="1.5" opacity=".7"/>
+                <line x1="175" y1="90" x2="225" y2="90" stroke="#fff" stroke-width="2" opacity="1"/>
+                <text x="200" y="148" fill="#1D9E75" font-family="Space Mono" font-size="9" text-anchor="middle">✓ MAP parfaite</text>
+                <!-- Defocused right -->
+                <circle cx="320" cy="90" r="3" fill="#534AB7" opacity=".5"/>
+                <line x1="304" y1="62" x2="336" y2="118" stroke="#534AB7" stroke-width="1.5" opacity=".6"/>
+                <line x1="336" y1="62" x2="304" y2="118" stroke="#534AB7" stroke-width="1.5" opacity=".4"/>
+                <line x1="294" y1="90" x2="346" y2="90" stroke="#534AB7" stroke-width="2" opacity=".6"/>
+                <text x="320" y="148" fill="#C04520" font-family="Space Mono" font-size="9" text-anchor="middle">MAP incorrecte</text>
+                <text x="200" y="168" fill="#7A7870" font-family="Space Mono" font-size="8" text-anchor="middle">pic central centré entre les deux pics latéraux</text>
+              </svg>
+              <div class="diagram-caption">Lecture du masque de Bahtinov — le pic central doit être exactement centré</div>
+            </div>
+            <div class="practice-box">
+              <div class="practice-label">Procédure</div>
+              <div class="practice-p">Viser une étoile mag 2–4. Placer le masque. Zoom ×10 Live View. Ajuster jusqu'au centrage parfait. Scotch sur la bague. Vérifier toutes les 2h (dérive thermique).</div>
+            </div>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- theory-1 -->
+
+  <div id="theory-2" class="stage-panel">
+    <div class="theory-section">
+      <div class="theory-label">Étape 2 — cours théorique</div>
+      <div class="accordion">
+
+        <div class="acc-item open">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span class="acc-title">2.1 — FOV, échelle de plaque & rapport focal</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body"><div class="acc-content">
+            <p class="theory-p">Le <span class="def-tag">champ de vision (FOV)</span> dépend de la focale et de la taille du capteur :</p>
+            <div class="formula-box">
+              \[ \text{FOV}_{°} = 2 \cdot \arctan\left(\frac{d_{capteur}}{2 \cdot f}\right) \]
+            </div>
+            <p class="theory-p">X-T4 APS-C (23.5mm) à 750mm → FOV horizontal ≈ 1.8°. M42 (1.1°) tient dans le champ. M31 (3.2°) nécessite une mosaïque à 750mm.</p>
+            <p class="theory-p">L'<span class="def-tag">échelle de plaque</span> mesure la résolution angulaire par pixel :</p>
+            <div class="formula-box">
+              \[ E_{"/px} = \frac{p_{\mu m}}{f_{mm}} \times 206.265 \]
+            </div>
+            <p class="theory-p">X-T4 (3.76µm) à 750mm → 1.03"/px. Zone idéale : 1–2"/px. En dessous de 0.5"/px, le seeing devient le facteur limitant.</p>
+            <p class="theory-p">La <span class="def-tag">luminosité optique</span> du Newton f/5 :</p>
+            <div class="formula-box">
+              \[ \text{Luminosité} \propto \frac{1}{N^2} \quad \text{Newton f/5 : 4× plus rapide que f/10} \]
+            </div>
+          </div></div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span class="acc-title">2.2 — Collimation du Newton</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body"><div class="acc-content">
+            <p class="theory-p">Le Newton comporte deux miroirs : <span class="def-tag">miroir primaire</span> (parabolique concave, fond du tube) et <span class="def-tag">miroir secondaire</span> (plan elliptique à 45°). La collimation aligne leurs axes sur l'axe optique du porte-oculaire. Une erreur produit de la <span class="def-tag">coma</span> (étoiles en virgule) en bord de champ.</p>
+            <div class="diagram-wrap">
+              <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;display:block;margin:0 auto;">
+                <!-- Tube -->
+                <rect x="40" y="60" width="400" height="80" rx="4" fill="none" stroke="#252A40" stroke-width="2"/>
+                <!-- Miroir primaire -->
+                <ellipse cx="60" cy="100" rx="8" ry="36" fill="none" stroke="#534AB7" stroke-width="2"/>
+                <text x="20" y="155" fill="#534AB7" font-family="Space Mono" font-size="8">primaire</text>
+                <!-- Miroir secondaire -->
+                <ellipse cx="360" cy="100" rx="5" ry="16" fill="none" stroke="#7A7870" stroke-width="1.5" transform="rotate(-45,360,100)"/>
+                <text x="345" y="55" fill="#7A7870" font-family="Space Mono" font-size="8">secondaire</text>
+                <!-- Porte-oculaire -->
+                <rect x="440" y="82" width="80" height="36" rx="4" fill="none" stroke="#1D9E75" stroke-width="1.5"/>
+                <text x="480" y="105" fill="#1D9E75" font-family="Space Mono" font-size="8" text-anchor="middle">PO</text>
+                <!-- Light path -->
+                <line x1="440" y1="100" x2="365" y2="100" stroke="#EF9F27" stroke-width="1" stroke-dasharray="3 2" opacity=".7"/>
+                <line x1="355" y1="90" x2="75" y2="90" stroke="#EF9F27" stroke-width="1" stroke-dasharray="3 2" opacity=".4"/>
+                <text x="480" y="155" fill="#7A7870" font-family="Space Mono" font-size="8">caméra ici</text>
+                <!-- Collimation ok label -->
+                <text x="200" y="175" fill="#1D9E75" font-family="Space Mono" font-size="8" text-anchor="middle">✓ axes alignés → étoiles rondes jusqu'en bord de champ</text>
+              </svg>
+              <div class="diagram-caption">Anatomie d'un Newton — miroir primaire, secondaire et porte-oculaire</div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span class="acc-title">2.3 — Coordonnées célestes, goto & méridien</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body"><div class="acc-content">
+            <p class="theory-p"><span class="def-tag">Ascension droite (AD)</span> : équivalent céleste de la longitude, mesurée en heures (0h–24h). <span class="def-tag">Déclinaison (Déc)</span> : équivalent céleste de la latitude, en degrés (-90° à +90°). M42 : AD 5h 35m, Déc -5°.</p>
+            <p class="theory-p">Le <span class="def-tag">méridien</span> est la ligne nord-zénith-sud. Quand une cible passe le méridien, c'est son altitude maximale. La monture doit effectuer un <span class="def-tag">retournement méridien</span> (rotation 180°) pour éviter que le tube heurte le trépied — NINA gère ça automatiquement.</p>
+            <p class="theory-p">L'<span class="def-tag">erreur périodique</span> de la HEQ5 (10–20" peak-to-peak, période ~8 min) limite les poses à 2–3 min à 750mm sans guidage. Le PEC (Periodic Error Correction) via EQMod peut réduire cette erreur à ~5" après une nuit d'enregistrement.</p>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- theory-2 -->
+
+  <div id="theory-3" class="stage-panel">
+    <div class="theory-section">
+      <div class="theory-label">Étape 3 — cours théorique</div>
+      <div class="accordion">
+
+        <div class="acc-item open">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span class="acc-title">3.1 — Principe de l'autoguidage & boucle de rétroaction</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body"><div class="acc-content">
+            <p class="theory-p">L'<span class="def-tag">autoguideur</span> observe en continu une étoile de référence (étoile guide) via une caméra dédiée + lunette guide. PHD2 mesure son déplacement toutes les 1–3s et envoie des impulsions correctrices à la monture. Objectif : RMS &lt; 1" sur chaque axe.</p>
+            <div class="diagram-wrap">
+              <svg viewBox="0 0 580 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:580px;display:block;margin:0 auto;">
+                <!-- Boucle -->
+                <rect x="10" y="50" width="100" height="50" rx="6" fill="#1E2235" stroke="#534AB7" stroke-width="1"/>
+                <text x="60" y="72" fill="#A9A4E8" font-family="Space Mono" font-size="8" text-anchor="middle">Caméra</text>
+                <text x="60" y="86" fill="#A9A4E8" font-family="Space Mono" font-size="8" text-anchor="middle">guide</text>
+                <line x1="110" y1="75" x2="145" y2="75" stroke="#7A7870" stroke-width="1" marker-end="url(#arr3)"/>
+                <defs><marker id="arr3" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#7A7870" stroke-width="1.2"/></marker></defs>
+                <text x="127" y="68" fill="#7A7870" font-family="Space Mono" font-size="7">image</text>
+                <rect x="145" y="50" width="100" height="50" rx="6" fill="#1E2235" stroke="#1D9E75" stroke-width="1"/>
+                <text x="195" y="72" fill="#9DDBC5" font-family="Space Mono" font-size="8" text-anchor="middle">PHD2</text>
+                <text x="195" y="86" fill="#9DDBC5" font-family="Space Mono" font-size="8" text-anchor="middle">mesure δ</text>
+                <line x1="245" y1="75" x2="280" y2="75" stroke="#7A7870" stroke-width="1" marker-end="url(#arr3)"/>
+                <text x="262" y="68" fill="#7A7870" font-family="Space Mono" font-size="7">correction</text>
+                <rect x="280" y="50" width="100" height="50" rx="6" fill="#1E2235" stroke="#C4830A" stroke-width="1"/>
+                <text x="330" y="72" fill="#D4A860" font-family="Space Mono" font-size="8" text-anchor="middle">Monture</text>
+                <text x="330" y="86" fill="#D4A860" font-family="Space Mono" font-size="8" text-anchor="middle">HEQ5</text>
+                <line x1="380" y1="75" x2="415" y2="75" stroke="#7A7870" stroke-width="1" marker-end="url(#arr3)"/>
+                <text x="395" y="68" fill="#7A7870" font-family="Space Mono" font-size="7">mouvement</text>
+                <rect x="415" y="50" width="100" height="50" rx="6" fill="#1E2235" stroke="#7A7870" stroke-width="1"/>
+                <text x="465" y="72" fill="#C8C4B8" font-family="Space Mono" font-size="8" text-anchor="middle">Ciel corrigé</text>
+                <text x="465" y="86" fill="#C8C4B8" font-family="Space Mono" font-size="8" text-anchor="middle">RMS &lt;1"</text>
+                <!-- Feedback arrow -->
+                <path d="M465,100 Q465,135 60,135 Q60,100 60,100" fill="none" stroke="#534AB7" stroke-width="1" stroke-dasharray="3 2" opacity=".5" marker-end="url(#arr3)"/>
+                <text x="260" y="148" fill="#534AB7" font-family="Space Mono" font-size="7" text-anchor="middle">boucle de rétroaction continue</text>
+              </svg>
+              <div class="diagram-caption">Boucle de rétroaction de l'autoguidage PHD2</div>
+            </div>
+            <p class="theory-p"><span class="def-tag">RMS</span> (Root Mean Square) : racine carrée de la moyenne des carrés des écarts. \( \text{RMS} = \sqrt{\frac{1}{N}\sum_{i=1}^{N} \delta_i^2} \). Objectif : RMS_AD &lt; 1" et RMS_Déc &lt; 1".</p>
+            <p class="theory-p"><span class="def-tag">Agressivité PHD2</span> : pourcentage de la correction calculée qui est appliqué. À 100% → overshooting et oscillations. À 60–70% → convergence stable. Toujours lancer l'assistant de calibration avant tout réglage manuel.</p>
+            <div class="warn-box">
+              <div class="warn-label">Diagnostic rapide</div>
+              <div class="warn-p">Dérive constante Déc = mauvais alignement polaire (pas un problème PHD2). Oscillations haute fréquence = agressivité trop élevée ou flexion mécanique. Saut soudain = nuage sur l'étoile guide ou coup de vent.</div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span class="acc-title">3.2 — Dithering : éliminer le bruit de pattern</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body"><div class="acc-content">
+            <p class="theory-p">Le <span class="def-tag">dithering</span> décale le pointage de 3–10 pixels entre chaque pose. Le signal de la cible reste aligné à l'empilement, mais les défauts fixes (pixels chauds, banding) se retrouvent à des positions différentes → éliminés par le sigma-clipping.</p>
+            <p class="theory-p">Sans dithering, les pixels chauds survivent à l'empilement et créent des taches dans l'image finale. Avec dithering : ils se comportent comme des outliers → rejetés. À activer dès que PHD2 guide dans NINA (scale 3–5 px, délai settle ~10s).</p>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- theory-3 -->
+
+  <div id="theory-4" class="stage-panel">
+    <div class="theory-section">
+      <div class="theory-label">Étape 4 — cours théorique</div>
+      <div class="accordion">
+
+        <div class="acc-item open">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span class="acc-title">4.1 — Physique des raies d'émission narrowband</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body"><div class="acc-content">
+            <p class="theory-p">Les nébuleuses en émission brillent parce que le gaz est <span class="def-tag">ionisé</span> par le rayonnement UV d'étoiles massives. Lors de la recombinaison ion-électron, des photons sont émis à des longueurs d'onde très précises :</p>
+            <div class="diagram-wrap">
+              <svg viewBox="0 0 560 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;display:block;margin:0 auto;">
+                <!-- Spectrum bar -->
+                <defs>
+                  <linearGradient id="spec" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#7B00FF"/>
+                    <stop offset="20%" stop-color="#0000FF"/>
+                    <stop offset="35%" stop-color="#00BFFF"/>
+                    <stop offset="50%" stop-color="#00FF00"/>
+                    <stop offset="65%" stop-color="#FFFF00"/>
+                    <stop offset="80%" stop-color="#FF7700"/>
+                    <stop offset="100%" stop-color="#FF0000"/>
+                  </linearGradient>
+                </defs>
+                <rect x="40" y="20" width="480" height="40" rx="4" fill="url(#spec)" opacity=".7"/>
+                <!-- nm labels -->
+                <text x="40"  y="75" fill="#7A7870" font-family="Space Mono" font-size="8" text-anchor="middle">380</text>
+                <text x="520" y="75" fill="#7A7870" font-family="Space Mono" font-size="8" text-anchor="middle">780nm</text>
+                <!-- Emission lines -->
+                <line x1="175" y1="10" x2="175" y2="65" stroke="#4AB7FF" stroke-width="2.5"/>
+                <text x="175" y="8" fill="#4AB7FF" font-family="Space Mono" font-size="7.5" text-anchor="middle">OIII</text>
+                <text x="175" y="90" fill="#4AB7FF" font-family="Space Mono" font-size="7" text-anchor="middle">501nm</text>
+                <line x1="430" y1="10" x2="430" y2="65" stroke="#FF3300" stroke-width="2.5"/>
+                <text x="430" y="8" fill="#FF3300" font-family="Space Mono" font-size="7.5" text-anchor="middle">Hα</text>
+                <text x="430" y="90" fill="#FF3300" font-family="Space Mono" font-size="7" text-anchor="middle">656nm</text>
+                <line x1="455" y1="10" x2="455" y2="65" stroke="#CC2200" stroke-width="1.5" opacity=".6"/>
+                <text x="460" y="8" fill="#CC2200" font-family="Space Mono" font-size="6">SII</text>
+                <text x="460" y="90" fill="#CC2200" font-family="Space Mono" font-size="6">672nm</text>
+                <!-- Filter windows -->
+                <rect x="170" y="16" width="10" height="28" fill="none" stroke="#4AB7FF" stroke-width="1" stroke-dasharray="2 1" opacity=".8"/>
+                <rect x="425" y="16" width="10" height="28" fill="none" stroke="#FF3300" stroke-width="1" stroke-dasharray="2 1" opacity=".8"/>
+                <text x="300" y="90" fill="#7A7870" font-family="Space Mono" font-size="7" text-anchor="middle">← filtre 7nm FWHM →</text>
+              </svg>
+              <div class="diagram-caption">Spectre visible — position des raies Hα, OIII et SII et fenêtres des filtres narrowband</div>
+            </div>
+            <p class="theory-p"><strong style="color:var(--star-white)">Hα (656.3nm)</strong> — hydrogène ionisé, transition n=3→2 (série de Balmer). Raie la plus intense. Atténuée par le filtre UVIR du X-T4 standard.<br>
+            <strong style="color:var(--star-white)">OIII (500.7nm)</strong> — oxygène doublement ionisé. Très intense dans les nébuleuses planétaires.<br>
+            <strong style="color:var(--star-white)">SII (671.6nm)</strong> — soufre ionisé. Faible, nécessaire pour la palette SHO complète.</p>
+          </div></div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span class="acc-title">4.2 — Capteur mono refroidi & palettes HOO/SHO</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body"><div class="acc-content">
+            <p class="theory-p">Pourquoi abandonner le X-T4 pour les nébuleuses : (1) le filtre UVIR atténue Hα de 70–80%, (2) la matrice X-Trans réduit la sensibilité Hα par pixel, (3) le bruit thermique est non négligeable à température ambiante sur 10–20 min.</p>
+            <p class="theory-p">Le module <span class="def-tag">Peltier (TEC)</span> refroidit le capteur de -35°C sous la température ambiante. Le dark current diminue exponentiellement : -6°C = ÷2, donc -42°C ≈ ÷128. Les poses de 10–20 min deviennent propres.</p>
+            <p class="theory-p"><span class="def-tag">Palette HOO</span> : Hα→Rouge, OIII→Vert, OIII→Bleu. Rendu naturel, sans dominante problématique.<br>
+            <span class="def-tag">Palette SHO</span> (Hubble) : SII→Rouge, Hα→Vert, OIII→Bleu. Faux couleurs spectaculaires mais dominante verte à corriger avec SCNR dans PixInsight.</p>
+            <div class="formula-box">
+              \[ \text{HOO} = \begin{pmatrix} R \\ G \\ B \end{pmatrix} = \begin{pmatrix} H\alpha \\ \text{OIII} \\ \text{OIII} \end{pmatrix} \qquad \text{SHO} = \begin{pmatrix} R \\ G \\ B \end{pmatrix} = \begin{pmatrix} \text{SII} \\ H\alpha \\ \text{OIII} \end{pmatrix} \]
+            </div>
+          </div></div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-header" onclick="toggleAcc(this)">
+            <span class="acc-title">4.3 — Setup parallèle — uniquement à l'étape 4</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body"><div class="acc-content">
+            <p class="theory-p">À partir de l'étape 4, la caméra ASI294MM est montée sur le Newton. Le X-T4 est libéré et peut fonctionner simultanément sur le barn door tracker avec le 18-50mm.</p>
+            <div class="info-box ib-purple">Exemple : ASI294MM image M1 en Hα (poses de 10 min, piloté par NINA) pendant que le X-T4 + 18-50mm sur barn door tracker capture la région d'Orion en grand champ ou fait un time-lapse de la Voie Lactée. Les deux setups sont totalement indépendants.</div>
+            <div class="warn-box">
+              <div class="warn-label">Important</div>
+              <div class="warn-p">Un seul X-T4 jusqu'à l'étape 3 — on choisit l'objectif selon la cible de la nuit. Pas de "parallèle" possible avant d'avoir la caméra mono dédiée.</div>
+            </div>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- theory-4 -->
+
+</section><!-- /theory -->
+
+<!-- ──────────────────────────── TARGETS ──────────────────────────────── -->
+<section id="targets" class="wrap">
+  <div class="sec-label">Catalogue</div>
+  <h2 class="sec-title">Les <em>Cibles</em></h2>
+  <div class="sec-rule"></div>
+  <p class="sec-body">Presque exclusivement du <strong>ciel profond</strong> — nébuleuses, galaxies, amas globulaires, rémanents de supernova. La Lune (1 cible) est hors catégorie, cible d'entraînement. Cliquer sur une carte pour les détails complets.</p>
+
+  <div class="stage-tabs" style="margin-top:28px;">
+    <button class="stage-tab active" data-s="1" onclick="switchTargetTab(1)"><span class="tab-num">1</span>Étape 1</button>
+    <button class="stage-tab" data-s="2" onclick="switchTargetTab(2)"><span class="tab-num">2</span>Étape 2</button>
+    <button class="stage-tab" data-s="3" onclick="switchTargetTab(3)"><span class="tab-num">3</span>Étape 3</button>
+    <button class="stage-tab" data-s="4" onclick="switchTargetTab(4)"><span class="tab-num">4</span>Étape 4</button>
+  </div>
+
+  <div id="targets-1" class="stage-panel active">
+    <div class="targets-grid" id="grid-1"></div>
+  </div>
+  <div id="targets-2" class="stage-panel">
+    <div class="targets-grid" id="grid-2"></div>
+  </div>
+  <div id="targets-3" class="stage-panel">
+    <div class="targets-grid" id="grid-3"></div>
+  </div>
+  <div id="targets-4" class="stage-panel">
+    <div class="targets-grid" id="grid-4"></div>
+  </div>
+</section>
+
+<!-- ──────────────────────────── GEAR ─────────────────────────────────── -->
+<section id="gear" class="wrap">
+  <div class="sec-label">Équipement</div>
+  <h2 class="sec-title"><em>Matériel</em></h2>
+  <div class="sec-rule"></div>
+
+  <div class="stage-tabs">
+    <button class="stage-tab active" data-s="1" onclick="switchGearTab(1)"><span class="tab-num">1</span>Tracker</button>
+    <button class="stage-tab" data-s="2" onclick="switchGearTab(2)"><span class="tab-num">2</span>Monture</button>
+    <button class="stage-tab" data-s="3" onclick="switchGearTab(3)"><span class="tab-num">3</span>Guidage</button>
+    <button class="stage-tab" data-s="4" onclick="switchGearTab(4)"><span class="tab-num">4</span>Mono</button>
+  </div>
+
+  <div id="gear-1" class="stage-panel active" style="margin-top:16px;">
+    <!-- Objective comparison -->
+    <div style="font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--nebula-1);display:flex;align-items:center;gap:10px;margin-bottom:14px;">Choix de l'objectif <span style="flex:1;height:1px;background:var(--rim-soft);display:block;"></span></div>
+    <div class="obj-compare">
+      <div class="obj-lens wide">
+        <span class="obj-lens-label">Grand angle</span>
+        <span class="obj-lens-focal">18–50mm f/2.8</span>
+        <ul class="obj-lens-list">
+          <li>FOV 67°×47° à 18mm</li>
+          <li>Voie Lactée entière</li>
+          <li>Grandes régions nébuleuses (&gt;5°)</li>
+          <li>Hyades, Rho Ophiuchi, contexte Orion</li>
+          <li>Paysage nocturne + ciel</li>
+          <li>Coma en coin à f/2.8 → diaphragmer à f/4</li>
+        </ul>
+        <p class="obj-warn">⚠ Coma en coin à pleine ouverture. Diaphragmer à f/4 si les étoiles de bord doivent être parfaites.</p>
+      </div>
+      <div class="obj-lens tele">
+        <span class="obj-lens-label">Téléobjectif</span>
+        <span class="obj-lens-focal">50–140mm f/2.8</span>
+        <ul class="obj-lens-list">
+          <li>FOV 9.5°×6.5° à 140mm</li>
+          <li>M42, M45, M31 (grand), Double Amas</li>
+          <li>Amas globulaires compacts</li>
+          <li>Galaxies 1–3° : M81/M82</li>
+          <li>Moins de coma — étoiles rondes en bord</li>
+          <li>Exige le tracker à 140mm (≤3.5s sans)</li>
+        </ul>
+        <p class="obj-warn">⚠ Tracker obligatoire à 140mm. Exigeant sur l'alignement polaire.</p>
+      </div>
+    </div>
+
+    <div style="font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--nebula-2);display:flex;align-items:center;gap:10px;margin:24px 0 14px;">Construction du tracker <span style="flex:1;height:1px;background:var(--rim-soft);display:block;"></span></div>
+    <div class="gear-card">
+      <div class="gc-top"><span class="gc-price">25–50 €</span><span class="gc-tag">À CONSTRUIRE</span></div>
+      <div class="gc-name">Barn door tracker DIY</div>
+      <div class="gc-desc">Deux planches articulées sur une charnière piano, entraînées par une tige M8 + moteur DC. L'axe de la charnière aligné sur Polaris compense la rotation terrestre à 15°/h.</div>
+      <div class="gc-rule"></div>
+      <div class="gc-tips">Principe : tige M8 (pas 1.25mm/tr) placée à 28.6cm de la charnière, entraînée à 1 tr/23.9 min. Solution recommandée : NEMA17 + Arduino Nano + A4988 (vitesse programmable précisément). Construction : 1 weekend.</div>
+    </div>
+    <div class="build-steps">
+      <div class="build-step"><div class="bstep-n">1</div><div class="bstep-body"><strong style="color:var(--star-white)">Découpe</strong> — 2 planches contreplaqué 20mm de 30×15cm. Charnière piano vissée sur le bord long des deux planches, parfaitement alignée. Le moindre jeu se traduit en filé.</div></div>
+      <div class="build-step"><div class="bstep-n">2</div><div class="bstep-body"><strong style="color:var(--star-white)">Tige filetée</strong> — Percer à exactement <strong style="color:var(--nebula-3)">28.6cm</strong> de l'axe de la charnière (mesure critique). Fixer l'écrou M8 dans ce trou sur la planche supérieure.</div></div>
+      <div class="build-step"><div class="bstep-n">3</div><div class="bstep-body"><strong style="color:var(--star-white)">Moteur</strong> — NEMA17 + driver A4988 + Arduino Nano. Uploader le sketch barn door tracker (GitHub). Paramétrer steps/mm selon pas de la tige et longueur du bras.</div></div>
+      <div class="build-step"><div class="bstep-n">4</div><div class="bstep-body"><strong style="color:var(--star-white)">Rotule</strong> — Visser une rotule 1/4" sur la planche supérieure pour orienter le X-T4 vers n'importe quelle partie du ciel.</div></div>
+      <div class="build-step"><div class="bstep-n">5</div><div class="bstep-body"><strong style="color:var(--star-white)">Fixation trépied</strong> — Filetage 1/4" sous la planche inférieure. Viseur polaire aligné sur Polaris. À Tournai/Gaurain (lat. 50.6°N), altitude du pôle = 50.6°.</div></div>
+      <div class="build-step"><div class="bstep-n">6</div><div class="bstep-body"><strong style="color:var(--star-white)">Test</strong> — Lancer le moteur. Poser test de 60s sur une étoile brillante. Vérifier la rondeur à 100% de zoom. Ajuster l'alignement polaire si les étoiles filent.</div></div>
+    </div>
+    <div class="budget-row" style="margin-top:20px;">
+      <div class="budget-item"><span class="budget-label">Construction tracker</span><span class="budget-val">25–50 €</span></div>
+      <div class="budget-item"><span class="budget-label">Bahtinov + télécommande</span><span class="budget-val">25–35 €</span></div>
+      <div class="budget-item"><span class="budget-label">Batteries ×2 + lampe rouge</span><span class="budget-val">50–90 €</span></div>
+      <div class="budget-item"><span class="budget-label">Total étape 1</span><span class="budget-val">~100–175 €</span></div>
+    </div>
+  </div>
+
+  <div id="gear-2" class="stage-panel" style="margin-top:16px;">
+    <div class="gear-grid">
+      <div class="gear-card">
+        <div class="gc-top"><span class="gc-price">350–450 € occasion / 700 € neuf</span><span class="gc-tag">MONTURE</span></div>
+        <div class="gc-name">Skywatcher HEQ5 Pro</div>
+        <div class="gc-desc">Monture équatoriale motorisée deux axes, goto intégré. Charge utile 13.7 kg. Référence du segment intermédiaire — compatible ASCOM/EQMod/NINA, PEC possible, communauté immense. <strong style="color:var(--star-white)">Pourquoi équatoriale ?</strong> Une monture altazimutale génère une rotation de champ inévitable en pose longue. La monture équatoriale compense avec un seul moteur sur l'axe AD.</div>
+        <div class="gc-rule"></div>
+        <div class="gc-tips">Vérifier à l'achat d'occasion : jeu dans les axes, état des courroies, goto fonctionnel sur 3 étoiles. Câble EQDir (~15 €) pour connexion PC via EQMod. Alimentation 12V 5A.</div>
+      </div>
+      <div class="gear-card">
+        <div class="gc-top"><span class="gc-price">200–250 € neuf</span><span class="gc-tag">TUBE OPTIQUE</span></div>
+        <div class="gc-name">Newton 150/750 f/5</div>
+        <div class="gc-desc">Réflecteur 150mm d'ouverture, 750mm de focale, f/5. Miroir primaire parabolique concave + miroir secondaire plan à 45°. Rapide (f/5 = 4× plus lumineux qu'un f/10) pour les nébuleuses. Se décollimate à chaque transport — collimation à refaire à chaque session.</div>
+        <div class="gc-rule"></div>
+        <div class="gc-tips">Accessoires obligatoires : collimateur laser (~25 €), Cheshire (~15 €), adaptateur T2-Fuji X (~15 €), dew heater secondaire (~20 €, indispensable en Ardennes).</div>
+      </div>
+    </div>
+    <div class="budget-row">
+      <div class="budget-item"><span class="budget-label">HEQ5 Pro (occasion)</span><span class="budget-val">350–450 €</span></div>
+      <div class="budget-item"><span class="budget-label">Newton 150/750</span><span class="budget-val">200–250 €</span></div>
+      <div class="budget-item"><span class="budget-label">Accessoires + dew heater</span><span class="budget-val">80–140 €</span></div>
+      <div class="budget-item"><span class="budget-label">Batterie 12V portable</span><span class="budget-val">80–200 €</span></div>
+      <div class="budget-item"><span class="budget-label">Total étape 2</span><span class="budget-val">~710–1 040 €</span></div>
+    </div>
+  </div>
+
+  <div id="gear-3" class="stage-panel" style="margin-top:16px;">
+    <div class="gear-grid">
+      <div class="gear-card">
+        <div class="gc-top"><span class="gc-price">~90 €</span><span class="gc-tag">CAMÉRA GUIDAGE</span></div>
+        <div class="gc-name">ZWO ASI120MM Mini</div>
+        <div class="gc-desc">Caméra monochrome USB, capteur 1/3", pixels 3.75µm. Avec la lunette guide 50/200, l'échelle de guidage est ~3.9"/px — suffisant pour la HEQ5 + Newton 150. Livré avec câble USB et câble ST4.</div>
+        <div class="gc-rule"></div>
+        <div class="gc-tips">Connexion préférée : ASCOM via EQMod (plus précis que ST4 hardware). Monter en piggyback sur une platine métallique vissée fermement — tout jeu = flexion différentielle = filé invisible par PHD2.</div>
+      </div>
+      <div class="gear-card">
+        <div class="gc-top"><span class="gc-price">55–80 €</span><span class="gc-tag">LUNETTE GUIDE</span></div>
+        <div class="gc-name">Lunette guide 50/200 (ou 60/240)</div>
+        <div class="gc-desc">Petit réfracteur achromatique monté en parallèle du tube principal. La 60/240 (focale plus longue) est légèrement meilleure en précision de guidage mais plus lourde. La 50/200 est suffisante pour la HEQ5 + Newton 150.</div>
+        <div class="gc-rule"></div>
+        <div class="gc-tips">SharpCap Pro (~13 €/an) pour l'alignement polaire automatisé précis (30–60" de précision en 5–10 min). Hub USB alimenté (~20 €) indispensable pour gérer monture + caméra principale + caméra guidage.</div>
+      </div>
+    </div>
+    <div class="budget-row">
+      <div class="budget-item"><span class="budget-label">ASI120MM Mini</span><span class="budget-val">85–95 €</span></div>
+      <div class="budget-item"><span class="budget-label">Lunette guide + platine</span><span class="budget-val">75–105 €</span></div>
+      <div class="budget-item"><span class="budget-label">Hub USB + SharpCap Pro</span><span class="budget-val">33–45 €</span></div>
+      <div class="budget-item"><span class="budget-label">Total étape 3</span><span class="budget-val">~193–245 €</span></div>
+    </div>
+  </div>
+
+  <div id="gear-4" class="stage-panel" style="margin-top:16px;">
+    <div class="gear-grid">
+      <div class="gear-card">
+        <div class="gc-top"><span class="gc-price">~500 €</span><span class="gc-tag">CAMÉRA MONO REFROIDIE</span></div>
+        <div class="gc-name">ZWO ASI294MM Pro</div>
+        <div class="gc-desc">Capteur mono Sony IMX492 (4/3", 11.3 Mpx, 4.63µm). Module Peltier (TEC) : -35°C sous température ambiante → dark current divisé par ~100 000. Chaque pixel capte 100% du signal dans la bande du filtre (vs 25–30% pour un capteur couleur en Hα). ADC 14 bits, USB 3.0.</div>
+        <div class="gc-rule"></div>
+        <div class="gc-tips">Lancer le refroidissement 15 min avant la session. Température cible : -10 à -15°C selon conditions. Darks indexés par couple (température, durée). Roue à filtres ZWO EFW 5 positions (~115 €) quasi obligatoire dès 2 filtres.</div>
+      </div>
+      <div class="gear-card">
+        <div class="gc-top"><span class="gc-price">~150 € / filtre</span><span class="gc-tag">FILTRES NARROWBAND</span></div>
+        <div class="gc-name">Hα + OIII 7nm (Optolong / ZWO / Antlia)</div>
+        <div class="gc-desc">Filtres interférentiels à couches diélectriques. FWHM 7nm : transmettent &gt;90% à la raie cible, bloquent tout le reste (pollution lumineuse, Lune). Depuis Tournai/Gaurain en narrowband, le ciel devient presque aussi bon qu'en Ardennes. Acheter Hα en premier, OIII en second, SII optionnel pour palette SHO complète.</div>
+        <div class="gc-rule"></div>
+        <div class="gc-tips">Stocker dans des boîtes étanches avec gel de silice. Ne jamais toucher la surface optique. Alternative large bande : Optolong L-Pro (~80 €) ou IDAS LPS (~130 €) pour le X-T4 en lumière blanche aux étapes 1–3.</div>
+      </div>
+    </div>
+    <div class="budget-row">
+      <div class="budget-item"><span class="budget-label">ASI294MM Pro</span><span class="budget-val">~500 €</span></div>
+      <div class="budget-item"><span class="budget-label">Hα 7nm + OIII 7nm</span><span class="budget-val">~300 €</span></div>
+      <div class="budget-item"><span class="budget-label">Roue à filtres ZWO EFW</span><span class="budget-val">~115 €</span></div>
+      <div class="budget-item"><span class="budget-label">Total étape 4</span><span class="budget-val">~915 €</span></div>
+    </div>
+  </div>
+
+</section><!-- /gear -->
+
+<!-- ──────────────────────────── REMARKS ──────────────────────────────── -->
+<section id="remarks" class="wrap">
+  <div class="sec-label">Méta</div>
+  <h2 class="sec-title">Ce qui fait <em>la différence</em></h2>
+  <div class="sec-rule"></div>
+  <div class="diff-list">
+    <div class="diff-item"><div class="diff-t">Alignement polaire + flats</div><div class="diff-b">La majorité des images décevantes ont une de ces deux causes à la racine. Ces deux compétences apportent plus que n'importe quel investissement matériel.</div></div>
+    <div class="diff-item"><div class="diff-t">Ne jamais acheter du matériel pour compenser une lacune technique</div><div class="diff-b">Une HEQ5 sur un alignement polaire bâclé donne de moins bons résultats qu'une EQ3 bien alignée. 80% technique, 20% matériel.</div></div>
+    <div class="diff-item"><div class="diff-t">Acclimater le capteur 30 min avant les brutes</div><div class="diff-b">Si l'appareil est à 20°C en sortant de la voiture et l'air extérieur à 5°C, les darks ne correspondent pas aux brutes. 30 min d'attente obligatoires.</div></div>
+    <div class="diff-item"><div class="diff-t">Toujours exporter en TIFF 16 bits</div><div class="diff-b">Un export JPEG ou 8 bits après empilement détruit de l'information irrémédiablement. TIFF 16 bits dans tous les logiciels, toujours.</div></div>
+    <div class="diff-item"><div class="diff-t">Siril → APP → PixInsight</div><div class="diff-b">Siril (gratuit) couvre 90% des besoins jusqu'à l'étape 3. APP (~130 €/an) pour les mosaïques et gradients complexes. PixInsight (~250 €) uniquement à l'étape 3–4 quand les données sont de qualité.</div></div>
+    <div class="diff-item"><div class="diff-t">Ardennes pour le ciel profond, Tournai/Gaurain pour s'entraîner</div><div class="diff-b">Bortle 6–7 depuis Tournai/Gaurain — utile pour pratiquer guidage, séquençage, collimation. Les images finales se font depuis les Ardennes (Bortle 3–4). Exception : narrowband étape 4 utilisable depuis Tournai.</div></div>
+    <div class="diff-item"><div class="diff-t">Deux batteries + carte mémoire avant chaque sortie</div><div class="diff-b">Une soirée en Ardennes peut être ruinée par une batterie vide à 2h du matin. Vérification systématique obligatoire.</div></div>
+    <div class="diff-item"><div class="diff-t">Dew heater dès l'étape 2</div><div class="diff-b">La rosée en Ardennes couvre le secondaire du Newton en 1–2h. ~20 € à acheter avec le tube, pas après une première nuit ratée.</div></div>
+    <div class="diff-item"><div class="diff-t">PHD2 — assistant de calibration d'abord</div><div class="diff-b">Ne jamais ajuster l'agressivité PHD2 sans avoir lancé l'assistant intégré. Dérive constante Déc = problème d'alignement polaire, pas de guidage.</div></div>
+    <div class="diff-item"><div class="diff-t">Super-résolution Lune</div><div class="diff-b">Photoshop : Image > Taille de l'image > Conserver les détails 2.0, ×2. Révèle des détails fins sans télescope.</div></div>
+  </div>
+</section>
+
+<!-- ──────────────────────────── BEYOND ───────────────────────────────── -->
+<section id="beyond" class="wrap">
+  <div class="sec-label">Horizons</div>
+  <h2 class="sec-title">Aller encore <em>plus loin</em></h2>
+  <div class="sec-rule"></div>
+  <p class="sec-body" style="margin-bottom:28px;">M1 en Hα est un jalon, pas un plafond. Ce qui existe au-delà — pour donner une idée de l'étendue des possibles.</p>
+  <div class="horizons-grid">
+    <div class="horizon-card hc-purple"><div class="hc-title">Imagerie planétaire — lucky imaging</div><div class="hc-body">Saturne, Jupiter, Mars. Vidéo haute cadence (50–200 fps), sélection des 5% de frames les plus nettes (AutoStakkert). Caméra planétaire ZWO ASI224MC (~200 €) + ADC (~80 €). Compatible HEQ5 + Newton 150.</div></div>
+    <div class="horizon-card hc-amber"><div class="hc-title">Imagerie solaire Hα</div><div class="hc-body">Lunt 60mm ou Coronado SolarMax. Filaments, protubérances, granulation photosphérique. Transit d'objets devant le Soleil (ISS, Falcon 9) — moins d'une seconde, trajectoire calculée via Heavens-Above. Budget entrée ~600–900 €.</div></div>
+    <div class="horizon-card hc-teal"><div class="hc-title">IFN — Integrated Flux Nebulae</div><div class="hc-body">Nébulosités galactiques qui réfléchissent la lumière intégrée de la Voie Lactée. Autour de M81/M82 ou de Polaris. Des dizaines d'heures d'intégration, Bortle 2–3 impératif.</div></div>
+    <div class="horizon-card hc-coral"><div class="hc-title">Arcs de marée galactiques</div><div class="hc-body">Flux d'étoiles arrachées par interaction gravitationnelle. Structures à la frontière de l'astrophoto amateur avancée et de la science. Certains amateurs contribuent à des publications scientifiques.</div></div>
+    <div class="horizon-card hc-purple"><div class="hc-title">Spectroscopie stellaire</div><div class="hc-body">Star Analyser SA-100 (~200 €). De "voir" à "mesurer" — température, vitesse radiale, composition. Les raies de Fraunhofer de Voyage à travers l'Univers (ch. II) prennent une dimension concrète. ARAS, BeSS.</div></div>
+    <div class="horizon-card hc-teal"><div class="hc-title">Contribution scientifique</div><div class="hc-body">AAVSO (étoiles variables), Unistellar (occultations, exoplanètes), Breakthrough Listen (données SETI ouvertes). Accessibles dès l'étape 3–4. L'astrophysique est l'une des rares sciences où amateurs et professionnels collaborent à égalité réelle.</div></div>
+    <div class="horizon-card hc-amber"><div class="hc-title">Grand champ — IFN & structures galactiques</div><div class="hc-body">Lunette courte (Redcat 51, f/4.9) + caméra plein format. Flux de Magellanic, halos de galaxies, IFN. X-T4 + 18-50mm utilisable directement en grand champ nocturne.</div></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <p>« Nous sommes une façon pour le cosmos de se connaître lui-même. »</p>
+  <cite>— Carl Sagan · Roadmap Astrophoto, Joey 2026</cite>
+</footer>
+
+<!-- ═══ MODAL ════════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal" id="modal-content">
+    <div class="modal-photo" id="modal-photo">
+      <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-cat" id="modal-cat"></div>
+      <div class="modal-name" id="modal-name"></div>
+      <div class="modal-desc" id="modal-desc"></div>
+      <div class="modal-rule"></div>
+      <div class="modal-section-label">Configuration & réglages</div>
+      <div class="modal-setup" id="modal-setup"></div>
+      <div class="modal-section-label" id="modal-lens-label" style="margin-top:12px;"></div>
+      <div id="modal-lens"></div>
+      <div class="modal-source" id="modal-source"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   CELESTIAL GRID + DARK STARFIELD (theme-aware)
+═══════════════════════════════════════════════════════════ */
+(function(){
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  let W, H;
+
+  function resize(){
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    buildStars();
+  }
+
+  function buildStars(){
+    const rng = (seed => () => { seed=(seed*9301+49297)%233280; return seed/233280; })(137);
+    stars = Array.from({length:200}, () => ({
+      x: rng()*W, y: rng()*H,
+      r: rng()*1.15+.1,
+      baseA: rng()*.65+.08,
+      phase: rng()*Math.PI*2,
+      speed: rng()*.00028+.00008
+    }));
+  }
+
+  function isLight(){ return document.documentElement.dataset.theme === 'light'; }
+
+  function drawGrid(){
+    /* Coordonnées célestes : grille AD (ascension droite) + Déc (déclinaison) */
+    const light = isLight();
+    const lineColor  = light ? 'rgba(83,74,183,0.10)' : 'rgba(83,74,183,0.07)';
+    const curveColor = light ? 'rgba(29,158,117,0.07)' : 'rgba(29,158,117,0.05)';
+    const labelColor = light ? 'rgba(83,74,183,0.22)' : 'rgba(83,74,183,0.14)';
+    const dotColor   = light ? 'rgba(83,74,183,0.18)' : 'rgba(83,74,183,0.10)';
+
+    /* Lignes verticales AD (0h–24h, toutes les 2h = 12 colonnes) */
+    const cols = 12;
+    ctx.strokeStyle = lineColor; ctx.lineWidth = 0.5;
+    for(let i = 0; i <= cols; i++){
+      const x = i * W / cols;
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    }
+
+    /* Lignes horizontales Déc (-90° à +90°, toutes les 30° = 6 bandes) */
+    const rows = 6;
+    for(let j = 0; j <= rows; j++){
+      const y = j * H / rows;
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+
+    /* Ellipses de déclinaison (cercles concentriques projetés) */
+    ctx.strokeStyle = curveColor;
+    const cx = W * 0.5, cy = H * 0.5;
+    for(let k = 1; k <= 4; k++){
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, W * k * 0.14, H * k * 0.12, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    /* Nœuds aux intersections */
+    for(let i = 0; i <= cols; i++){
+      for(let j = 0; j <= rows; j++){
+        ctx.beginPath();
+        ctx.arc(i * W / cols, j * H / rows, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = dotColor; ctx.fill();
+      }
+    }
+
+    /* Labels AD (en heures) */
+    ctx.fillStyle = labelColor;
+    ctx.font = '9px Space Mono, monospace';
+    for(let i = 0; i < cols; i++){
+      const x = (i + 0.5) * W / cols;
+      ctx.fillText((i * 2) + 'h', x - 6, H - 6);
+    }
+
+    /* Labels Déc (en degrés) */
+    const decLabels = ['+90°','+60°','+30°','0°','-30°','-60°','-90°'];
+    decLabels.forEach((lbl, j) => {
+      ctx.fillText(lbl, 4, j * H / rows + 11);
+    });
+  }
+
+  function drawStars(){
+    const t = Date.now();
+    stars.forEach(s => {
+      const a = s.baseA + Math.sin(t * s.speed + s.phase) * 0.05;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      /* dark = étoiles blanches ; light = invisible (grid uniquement) */
+      ctx.fillStyle = `rgba(240,237,228,${Math.max(0, a)})`;
+      ctx.fill();
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    drawGrid();
+    if(!isLight()) drawStars();  /* étoiles seulement en dark */
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   THEME TOGGLE
+═══════════════════════════════════════════════════════════ */
+function toggleTheme(){
+  const root = document.documentElement;
+  const btn  = document.getElementById('theme-btn');
+  const isLight = root.dataset.theme === 'light';
+  root.dataset.theme = isLight ? 'dark' : 'light';
+  btn.textContent   = isLight ? '☀' : '☾';
+  btn.title         = isLight ? 'Passer en light mode' : 'Passer en dark mode';
+  localStorage.setItem('astrophoto-theme', root.dataset.theme);
+}
+
+/* Restore saved preference */
+(function(){
+  const saved = localStorage.getItem('astrophoto-theme');
+  const btn   = document.getElementById('theme-btn');
+  if(saved === 'light'){
+    document.documentElement.dataset.theme = 'light';
+    if(btn){ btn.textContent = '☾'; btn.title = 'Passer en dark mode'; }
+  }
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════════════════ */
+function showSection(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+function goToStage(n){
+  showSection('targets');
+  setTimeout(()=>switchTargetTab(n),400);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ACCORDION
+═══════════════════════════════════════════════════════════ */
+function toggleAcc(btn){
+  const item = btn.closest('.acc-item');
+  const wasOpen = item.classList.contains('open');
+  // Close all in same accordion
+  btn.closest('.accordion').querySelectorAll('.acc-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen) item.classList.add('open');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TAB SWITCHERS
+═══════════════════════════════════════════════════════════ */
+function switchTab(prefix, n){
+  // Deactivate all tabs with this prefix
+  document.querySelectorAll(`[onclick*="switchTheoryTab"],
+    [onclick*="switchTargetTab"],
+    [onclick*="switchGearTab"]`).forEach(t=>{
+    const fn = t.getAttribute('onclick')||'';
+    if(fn.includes(prefix.charAt(0).toUpperCase()+prefix.slice(1)+'Tab')||
+       fn.includes(prefix)){
+      // handled below
+    }
+  });
+
+  // Better approach: use data-prefix or just match by section
+  const sectionId = prefix==='theory'?'theory':prefix==='targets'?'targets':'gear';
+  const section = document.getElementById(sectionId);
+  if(!section) return;
+
+  // Deactivate all tabs in this section's first stage-tabs
+  section.querySelectorAll('.stage-tab').forEach(t=>t.classList.remove('active'));
+  // Deactivate all panels with this prefix
+  section.querySelectorAll('.stage-panel').forEach(p=>p.classList.remove('active'));
+  // Activate the right tab
+  const tab = section.querySelector(`.stage-tab[data-s="${n}"]`);
+  if(tab) tab.classList.add('active');
+  // Activate the right panel
+  const panel = document.getElementById(`${prefix}-${n}`);
+  if(panel) panel.classList.add('active');
+}
+function switchTheoryTab(n){ switchTab('theory',n); }
+function switchTargetTab(n){ switchTab('targets',n); }
+function switchGearTab(n){ switchTab('gear',n); }
+
+/* ═══════════════════════════════════════════════════════════
+   TARGET DATA
+═══════════════════════════════════════════════════════════ */
+const TARGETS = {
+  1: [
+    { name:"M42 — Nébuleuse d'Orion", cat:"Messier 42 · Nébuleuse en émission · 1 344 al", boss:true, lens:"both",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/m42.jpg",
+      desc:"Nuage de gaz et de poussières, nurserie stellaire active. 65×60' de diamètre angulaire. Le Trapèze (4 étoiles massives ionisant le gaz environnant) est visible même à petite focale. Objet boss : fond uniforme, pas de filé, Trapèze visible.",
+      setup:[["Objectif","50-140mm f/2.8 (détail) ou 18-50mm@35mm (contexte Orion)"],["ISO","1600"],["Pose","60s"],["Nombre","50 poses min"],["Tracker","Barn door"],["Logiciel","Siril — debayering X-Trans"]],
+      lens_note:"<strong style='color:#A9A4E8'>50-140mm à 100–140mm</strong> : M42 remplit le cadre, filaments et Trapèze. <strong style='color:#7BB8E8'>18-50mm à 35mm</strong> : M42 + Nébuleuse de la Tête de Cheval + Flamme + M78 dans le même cadre.",
+      source:"Image : Hubble Space Telescope / NASA — ESA", badge:"b1" },
+
+    { name:"Voie Lactée — grand champ", cat:"Galaxie · Vue intérieure · Champ ~67°", boss:true, lens:"wide",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/milkyway.jpg",
+      desc:"La bande galactique vue de l'intérieur. Techniquement du ciel profond (notre propre galaxie), pratiquement traité comme de la photographie nocturne. Depuis les Ardennes (Bortle 3–4), la structure est saisissante — depuis Tournai/Gaurain (Bortle 6–7), le cœur reste terne.",
+      setup:[["Objectif","18-50mm à 18–28mm f/2.8 (ou f/4 si coma)"],["ISO","3200"],["Pose","20–30s (trépied) ou 60–90s (tracker)"],["Montage","Panorama vertical 3–5 images"],["Site","Ardennes — Hautes Fagnes / Semois"],["Saison","Mai à septembre (cœur galactique)"]],
+      lens_note:"<strong style='color:#7BB8E8'>18-50mm UNIQUEMENT</strong>. Le 50-140mm ne permet pas de capturer la bande galactique entière — son FOV est trop étroit.",
+      source:"Image : Henry Lee / Wikimedia Commons CC BY 2.0", badge:"b1" },
+
+    { name:"M45 — Les Pléiades", cat:"Messier 45 · Amas ouvert + nébuleuse réflexion · 444 al", boss:false, lens:"both",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/m45.jpg",
+      desc:"Amas ouvert entouré de la nébuleuse de Mérope (réflexion bleue). Les poses longues révèlent les volutes de gaz autour des étoiles — invisible à l'œil nu. L'amas fait ~2° — tient entier dans le champ à 140mm.",
+      setup:[["Objectif","50-140mm (détail nébuleuse) ou 18-50mm@50mm (environnement large)"],["ISO","1600"],["Pose","90s"],["Nombre","30 poses"],["Tracker","Barn door"],["Saison","Octobre à mars"]],
+      lens_note:"<strong style='color:#A9A4E8'>50-140mm à 140mm</strong> : nébuleuse de Mérope et halos individuels en détail. <strong style='color:#7BB8E8'>18-50mm à 50mm</strong> : tout l'amas + environnement nébuleux large.",
+      source:"Image : NASA / ESA / AURA / Caltech — domaine public", badge:"" },
+
+    { name:"M31 — Galaxie d'Andromède", cat:"Messier 31 · Galaxie spirale · 2,5 millions al", boss:false, lens:"wide",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/m31.jpg",
+      desc:"La galaxie la plus proche, visible à l'œil nu. Diamètre angulaire total >3° (6× la pleine Lune). La lumière que tu photographies a voyagé 2,5 millions d'années, émise avant l'apparition du genre Homo.",
+      setup:[["Objectif","18-50mm à 35mm (galaxy entière) — 50-140mm@100mm (noyau + bandes poussière)"],["ISO","1600"],["Pose","90s"],["Nombre","40 poses"],["Tracker","Barn door"],["Saison","Août à janvier"]],
+      lens_note:"<strong style='color:#7BB8E8'>18-50mm à 35mm</strong> : M31 entière + M32 + M110 — composition la plus saisissante. <strong style='color:#A9A4E8'>50-140mm à 140mm</strong> : noyau et bandes de poussière en détail — image très différente.",
+      source:"Image : Luc Viatour — CC BY-SA 3.0", badge:"" },
+
+    { name:"h + χ Persei — Double Amas", cat:"NGC 869 + NGC 884 · Amas ouverts · ~7 500 al", boss:false, lens:"tele",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/double_cluster.jpg",
+      desc:"Deux amas ouverts jumeaux séparés de 7'. Contraste marqué entre étoiles bleues et orangées. Les deux tiennent dans un même champ à 100mm — un des objets les plus spectaculaires à faible focale.",
+      setup:[["Objectif","50-140mm à 100mm (optimal) ou 18-50mm@50mm (contexte Persée)"],["ISO","1600"],["Pose","60s"],["Nombre","20 poses"],["Tracker","Barn door"],["Saison","Toute l'année, meilleur automne"]],
+      lens_note:"<strong style='color:#A9A4E8'>50-140mm à 100mm</strong> : les deux amas bien cadrés avec marge, séparation bien visible. Option optimale.",
+      source:"Image : Digitized Sky Survey / ESA — domaine public", badge:"" },
+
+    { name:"Hyades — L'amas le plus proche", cat:"Hyades · Amas ouvert · 153 al", boss:false, lens:"wide",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/hyades.jpg",
+      desc:"L'amas ouvert le plus proche (153 al). Tellement étendu (5°) qu'un grand angle est obligatoire. Aldébaran (géante rouge K5) dans le champ crée un beau contraste couleur avec les étoiles bleues de l'amas.",
+      setup:[["Objectif","18-50mm à 35–50mm UNIQUEMENT"],["ISO","800"],["Pose","30s"],["Nombre","20 poses"],["Tracker","Barn door ou trépied fixe"],["Saison","Octobre à mars"]],
+      lens_note:"<strong style='color:#7BB8E8'>18-50mm UNIQUEMENT</strong>. Trop étendu pour le 50-140mm. À 18mm on peut inclure les Pléiades dans le même cadre.",
+      source:"Image : wikimedia commons CC BY-SA", badge:"" },
+
+    { name:"Lune — mosaïque", cat:"Satellite naturel · 384 400 km · Pas du ciel profond", boss:false, lens:"tele",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/moon.jpg",
+      desc:"Cible d'entraînement hors catégorie ciel profond. La Lune réfléchit le Soleil — technique totalement différente (courtes poses, petit ISO). Utile pour pratiquer la mise au point, l'exposition, la mosaïque. Super-résolution Photoshop applicable : ×2 via Conserver les détails 2.0.",
+      setup:[["Objectif","50-140mm à 140mm (détail) ou 18-50mm@50mm (contexte étoilé)"],["ISO","200"],["Pose","1/250–1/500s"],["Montage","Mosaïque 3×2"],["Tracker","NON — trépied fixe suffisant"],["Assemblage","Microsoft ICE"]],
+      lens_note:"<strong style='color:#A9A4E8'>50-140mm à 140mm</strong> : Lune quasi plein cadre, détail maximal sur les cratères. <strong style='color:#7BB8E8'>18-50mm à 50mm</strong> : Lune + contexte étoilé — composition plus paysagère.",
+      source:"Image : Gregory H. Revera — CC BY-SA 3.0", badge:"" },
+  ],
+  2: [
+    { name:"M42 — version longue focale", cat:"Messier 42 · Newton 750mm · Orion", boss:true, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/m42_newton.jpg",
+      desc:"M42 revisitée à 750mm. Le Trapèze (4 étoiles massives ionisant le gaz) devient résolvable individuellement. Les filaments internes et structures de choc apparaissent. 5× plus de détail qu'à l'étape 1. Technique HDR obligatoire — le cœur sature vite.",
+      setup:[["Instrument","Newton 150/750 + X-T4 via T2-Fuji"],["ISO","800"],["Pose","2 min × 30 poses + 10s × 20 poses (HDR cœur)"],["Monture","HEQ5 sans guidage"],["Saison","Novembre à mars"]],
+      lens_note:"Newton 150/750 à 750mm de focale. X-T4 couplé via adaptateur T2-Fuji X.",
+      source:"Image : NASA / ESA — domaine public", badge:"b2" },
+
+    { name:"M31 — noyau et bras spiraux", cat:"Messier 31 · Galaxie spirale · Andromède · 2,5 Mal", boss:true, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/m31_core.jpg",
+      desc:"À 750mm tu entres dans la galaxie. Le noyau dense ressort clairement, les bandes de poussière sombres traversant les bras spiraux deviennent visibles. M32 et M110 dans le champ. Mosaïque de 2 panneaux pour couvrir l'ensemble des bras.",
+      setup:[["Instrument","Newton 150/750 + X-T4"],["ISO","1600"],["Pose","3 min × 40 poses"],["Monture","HEQ5 motorisée"],["Saison","Août à janvier"]],
+      lens_note:"Mosaïque 2 panneaux recommandée pour couvrir l'ensemble. M31 fait 3.2° — déborde du champ Newton à 1.8°.",
+      source:"Image : Luc Viatour — CC BY-SA 3.0", badge:"b2" },
+
+    { name:"M13 — Amas globulaire d'Hercule", cat:"Messier 13 · Amas globulaire · 25 000 al", boss:true, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/m13.jpg",
+      desc:"300 000 étoiles en sphère. Critère de succès : les étoiles individuelles en périphérie de l'amas doivent être résolvables. Le seeing joue beaucoup — une nuit turbulente brouille la périphérie même avec un bon setup.",
+      setup:[["Instrument","Newton 150/750 + X-T4"],["ISO","800"],["Pose","1 min × 30 poses"],["Monture","HEQ5 motorisée"],["Saison","Mars à septembre · Transit : juin"]],
+      lens_note:"Newton 750mm optimal. À 140mm sur le 50-140mm, M13 est trop petit pour être résolu en étoiles individuelles.",
+      source:"Image : NASA / ESA / Hubble — domaine public", badge:"b2" },
+
+    { name:"M27 — Nébuleuse Haltère", cat:"Messier 27 · Nébuleuse planétaire · ~1 360 al", boss:false, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/m27.jpg",
+      desc:"Nébuleuse planétaire — enveloppe de gaz éjectée par une étoile mourante (naine blanche centrale). Forme en haltère immédiatement reconnaissable. Une des nébuleuses planétaires les plus brillantes accessibles avec le Newton.",
+      setup:[["Instrument","Newton 150/750 + X-T4"],["ISO","1600"],["Pose","3 min × 25 poses"],["Monture","HEQ5 motorisée"],["Saison","Mai à novembre"]],
+      lens_note:"750mm minimum pour résoudre la forme. Forte composante OIII visible même sans filtre.",
+      source:"Image : ESO — CC BY 4.0", badge:"" },
+
+    { name:"M57 — Nébuleuse de la Lyre", cat:"Messier 57 · Nébuleuse planétaire · ~2 300 al", boss:false, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/m57.jpg",
+      desc:"Anneau de gaz parfait centré sur une naine blanche. Très petite (1.4'×1') — exige 750mm minimum pour être résolue. La mise au point doit être parfaite. La naine blanche centrale (mag 15) est inaccessible avec ce setup.",
+      setup:[["Instrument","Newton 150/750 + X-T4"],["ISO","1600"],["Pose","3 min × 30 poses"],["Monture","HEQ5 motorisée"],["Saison","Mai à novembre"]],
+      lens_note:"Cible emblématique du Newton. Trop petite pour les objectifs photo — Newton 750mm impératif.",
+      source:"Image : Hubble Heritage Team / NASA — domaine public", badge:"" },
+
+    { name:"NGC 891 — Galaxie de profil", cat:"NGC 891 · Galaxie spirale · 27 millions al", boss:false, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/ngc891.jpg",
+      desc:"Galaxie spirale vue exactement par la tranche. La bande de poussière sombre divisant le disque en deux est spectaculaire — c'est ce que la Voie Lactée ressemblerait vue de l'extérieur. Une des images les plus évocatrices en astrophoto amateur.",
+      setup:[["Instrument","Newton 150/750 + X-T4"],["ISO","1600"],["Pose","3 min × 35 poses"],["Monture","HEQ5 motorisée"],["Saison","Octobre à janvier"]],
+      lens_note:"Newton 750mm. Objet faible — les Ardennes (Bortle 3–4) sont impératives pour cette cible.",
+      source:"Image : Fabian RRRR — CC BY-SA 3.0", badge:"" },
+
+    { name:"M81 + M82 — Bode et Cigare", cat:"Messier 81+82 · Galaxies interagissantes · 12 Mal", boss:false, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/m81_m82.jpg",
+      desc:"Deux galaxies en interaction gravitationnelle. M81 : spirale classique. M82 : galaxie à sursaut de formation stellaire, avec des jets de gaz perpendiculaires à son disque visibles en Hα. Le duo tient dans un même champ à 750mm.",
+      setup:[["Instrument","Newton 150/750 + X-T4"],["ISO","1600"],["Pose","3 min × 35 poses"],["Monture","HEQ5 motorisée"],["Saison","Février à mai"]],
+      lens_note:"Les deux galaxies tiennent dans le champ Newton (1.8°) avec de la marge. À 140mm sur le 50-140mm aussi possible — contexte stellaire différent.",
+      source:"Image : Hubble Heritage Team / NASA — domaine public", badge:"" },
+
+    { name:"Chaîne de Markarian — Amas de la Vierge", cat:"M84, M86, M87, NGC 4438... · 50–70 Mal", boss:false, lens:"both",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/markarian.jpg",
+      desc:"Arc de galaxies dans l'amas de la Vierge. Une seule image contient une dizaine de galaxies à 50–70 millions d'al, dont M87 (la galaxie au trou noir de la première image VLBI). Vertigineux.",
+      setup:[["Instrument","Newton 150/750 (champ 1.8°) ou 50-140mm@140mm (champ 9.5° — plus de contexte)"],["ISO","1600"],["Pose","3 min × 40 poses"],["Monture","HEQ5 motorisée"],["Saison","Mars à juin"]],
+      lens_note:"<strong style='color:#D4A860'>Newton 750mm</strong> : la chaîne entière avec peu de marge. <strong style='color:#A9A4E8'>50-140mm à 140mm</strong> : champ 9.5° — la chaîne + contexte galactique large encore plus vertigineux.",
+      source:"Image : ESO — CC BY 4.0", badge:"" },
+  ],
+  3: [
+    { name:"NGC 7000 — Nébuleuse de l'Amérique du Nord", cat:"NGC 7000 · Nébuleuse en émission Hα · ~1 600 al", boss:true, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/ngc7000.jpg",
+      desc:"Vaste nébuleuse en émission Hα (2°×1.5') dans le Cygne. Riche en signal. Ses structures continentales révèlent avec les poses longues. Mosaïque 2×1 pour couvrir l'ensemble. Critère de succès : RMS <1\" sur toute la nuit, structure continentale visible.",
+      setup:[["Instrument","Newton 150/750 + X-T4"],["ISO","1600"],["Pose","5 min × 40 poses"],["Guidage","PHD2 + ASI120MM Mini"],["NINA","Séquençage + dithering auto"],["Saison","Juin à novembre"]],
+      lens_note:"Newton 750mm + autoguideur. Mosaïque 2 panneaux recommandée pour couvrir la nébuleuse entière.",
+      source:"Image : NASA / ESA / Hubble Heritage Team — domaine public", badge:"b3" },
+
+    { name:"M33 — Galaxie du Triangle", cat:"Messier 33 · Galaxie spirale · Groupe Local · 2,7 Mal", boss:true, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/m33.jpg",
+      desc:"Troisième galaxie du Groupe Local. Faible brillance de surface malgré sa grande taille angulaire (67'×42') — c'est ce qui la rend difficile. L'autoguideur est indispensable pour accumuler assez de signal. Les bras spiraux et les régions HII révèlent la structure galactique.",
+      setup:[["Instrument","Newton 150/750 + X-T4"],["ISO","1600"],["Pose","5 min × 50 poses"],["Guidage","PHD2 + ASI120MM Mini"],["Site","Ardennes impératif — objet faible"],["Saison","Août à janvier"]],
+      lens_note:"Ciel sombre impératif. Depuis Tournai/Gaurain, la faible brillance de surface est noyée dans la pollution lumineuse.",
+      source:"Image : Subaru Telescope / NAOJ — CC BY 2.0", badge:"b3" },
+
+    { name:"IC 1805 — Nébuleuse du Cœur", cat:"IC 1805 · Nébuleuse en émission · ~7 500 al · Cassiopée", boss:true, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/ic1805.jpg",
+      desc:"Immense nébuleuse en émission (~2° de diamètre) dans Cassiopée. Riche en Hα. Sans défiltration du X-T4 le rendu sera plus bleuté que rouge, mais les structures restent visibles et imposantes. Souvent imagée en duo avec IC 1848 (nébuleuse de l'Âme).",
+      setup:[["Instrument","Newton 150/750 + X-T4"],["ISO","1600"],["Pose","5 min × 40 poses"],["Guidage","PHD2 + ASI120MM Mini"],["Filtre","CLS clip optionnel"],["Saison","Septembre à janvier"]],
+      lens_note:"Newton 750mm. La nébuleuse fait ~2° — légèrement plus grande que le champ Newton (1.8°), une mosaïque donne un meilleur résultat.",
+      source:"Image : Hewholooks — CC BY-SA 3.0", badge:"b3" },
+
+    { name:"M101 — Galaxie du Moulinet", cat:"Messier 101 · Galaxie spirale · 21 Mal", boss:false, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/m101.jpg",
+      desc:"Spirale vue de face à 21 millions d'al. Très étendue mais faible brillance de surface. Les bras spiraux asymétriques et les régions HII rouges parsemant les bras sont la récompense d'une bonne accumulation de signal.",
+      setup:[["Instrument","Newton 150/750 + X-T4"],["ISO","1600"],["Pose","5 min × 45 poses"],["Guidage","PHD2"],["Saison","Avril à juillet"]],
+      lens_note:"Newton 750mm. Faible brillance de surface — Ardennes impératives.",
+      source:"Image : NASA / ESA / K. Kuntz et al. — domaine public", badge:"" },
+
+    { name:"M51 — Galaxies des Chiens de chasse", cat:"Messier 51 · Galaxies interagissantes · 23 Mal", boss:false, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/m51.jpg",
+      desc:"Duo en interaction. M51a (grande spirale) et M51b reliées par un pont de matière visible avec suffisamment de signal. Les bras spiraux de M51a parmi les mieux définis de toutes les galaxies accessibles aux amateurs.",
+      setup:[["Instrument","Newton 150/750 + X-T4"],["ISO","1600"],["Pose","5 min × 40 poses"],["Guidage","PHD2"],["Saison","Mars à juillet"]],
+      lens_note:"Newton 750mm. Le pont de matière reliant les deux galaxies est le défi de cette cible.",
+      source:"Image : NASA / ESA / S. Beckwith — domaine public", badge:"" },
+
+    { name:"IC 443 — Nébuleuse Méduse", cat:"IC 443 · Rémanent de supernova · ~5 000 al · Gémeaux", boss:false, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/ic443.jpg",
+      desc:"Rémanent de supernova dans les Gémeaux. Les filaments de choc émettent en Hα et OIII. Objet difficile sans filtre. Filtre CLS clip Optolong L-Pro (~80 €) conseillé. Forme en méduse saisissante.",
+      setup:[["Instrument","Newton 150/750 + X-T4"],["ISO","1600"],["Pose","5 min × 50 poses"],["Guidage","PHD2"],["Filtre","CLS clip L-Pro conseillé"],["Saison","Décembre à mars"]],
+      lens_note:"Newton 750mm. Forte composante Hα — le X-T4 non défiltré capte une partie du signal.",
+      source:"Image : Digitized Sky Survey / ESA — CC BY 4.0", badge:"" },
+
+    { name:"NGC 2403", cat:"NGC 2403 · Galaxie spirale · 10 Mal · Camélopard", boss:false, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/ngc2403.jpg",
+      desc:"Galaxie spirale souvent négligée. Riche en régions HII — des dizaines de points rouges parsèment ses bras spiraux. Bon terrain pour affiner le traitement couleur et la balance des blancs photométrique.",
+      setup:[["Instrument","Newton 150/750 + X-T4"],["ISO","1600"],["Pose","5 min × 35 poses"],["Guidage","PHD2"],["Saison","Décembre à avril"]],
+      lens_note:"Newton 750mm. Cible peu connue mais visuellement riche en HII.",
+      source:"Image : NASA / JPL-Caltech / K. Gordon — domaine public", badge:"" },
+  ],
+  4: [
+    { name:"M1 — Nébuleuse du Crabe", cat:"Messier 1 · Rémanent de supernova SN1054 · 6 500 al · Taureau", boss:true, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/m1.jpg",
+      desc:"Rémanent de la supernova observée par des astronomes chinois le 4 juillet 1054 ap. J.-C. À 6 500 al, elle s'étend encore à ~1 500 km/s. Son pulsar central — une étoile à neutrons en rotation 30× par seconde — alimente les filaments par rayonnement synchrotron. En Hα les structures internes sont saisissantes. C'est l'objet final de la roadmap.",
+      setup:[["Instrument","Newton 150/750 + ASI294MM Pro + filtre Hα 7nm"],["Pose","10 min × 40 poses (~7h total)"],["Guidage","PHD2 + ASI120MM Mini"],["Traitement","PixInsight — Hα monocanal"],["Saison","Octobre à mars · Transit : décembre"],["Nuits","2–3 nuits de données"]],
+      lens_note:"<strong style='color:#D4A860'>BOSS FINAL</strong> — objectif de toute la roadmap. ASI294MM Pro montée sur le Newton. X-T4 libéré pour un éventuel setup parallèle grand champ.",
+      source:"Image : NASA / ESA — domaine public", badge:"bf" },
+
+    { name:"IC 1848 — Nébuleuse de l'Âme", cat:"IC 1848 · Nébuleuse en émission · ~6 500 al · Cassiopée", boss:false, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/ic1848.jpg",
+      desc:"Souvent imagée en duo avec IC 1805. Ses structures internes — piliers de gaz, régions de formation stellaire — rappellent les Piliers de la Création à plus petite échelle. En HOO (Hα+OIII) le rendu est spectaculaire.",
+      setup:[["Instrument","Newton 150/750 + ASI294MM Pro"],["Filtres","Hα 7nm + OIII 7nm"],["Pose","10 min × 30 poses / canal"],["Palette","HOO"],["Saison","Septembre à janvier"]],
+      lens_note:"Imagerie mono bicanal. Commencer par Hα, ajouter OIII. Combinaison HOO dans PixInsight ou APP.",
+      source:"Image : S. Guisard / ESO — CC BY 4.0", badge:"" },
+
+    { name:"Sh2-132 — Nébuleuse du Lion", cat:"Sharpless 2-132 · Nébuleuse en émission · ~10 000 al · Céphée", boss:false, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/sh2_132.jpg",
+      desc:"Objet discret rarement photographié — un objet de connaisseurs. La forme évoquant un lion couché n'est visible qu'en narrowband. En SHO les contrastes entre Hα et OIII révèlent des structures que personne ne voit en lumière visible.",
+      setup:[["Instrument","Newton 150/750 + ASI294MM Pro"],["Filtres","Hα 7nm + OIII 7nm + SII 7nm"],["Pose","10 min × 35 poses / canal"],["Palette","SHO (Hubble) + SCNR"],["Intégration","8–10h totales"]],
+      lens_note:"Palette SHO complète — SII nécessaire. Corriger la dominante verte avec SCNR dans PixInsight après Channel Combination.",
+      source:"Image : Sara Wager — utilisée avec permission", badge:"" },
+
+    { name:"NGC 6992 — Dentelles du Cygne (est)", cat:"NGC 6992 · Rémanent de supernova · ~2 100 al · Cygne", boss:false, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/ngc6992.jpg",
+      desc:"Rémanent de supernova vieux de ~10 000 ans dans le Cygne. Les filaments de choc sont parmi les structures les plus fines et délicates de tout le ciel profond. Fort signal OIII (filaments bleus) et Hα (filaments rouges). Un classique absolu du narrowband.",
+      setup:[["Instrument","Newton 150/750 + ASI294MM Pro"],["Filtres","Hα 7nm + OIII 7nm"],["Pose","10 min × 30 poses / canal"],["Palette","HOO ou SHO"],["Mosaïque","2 panneaux pour couvrir est + ouest"]],
+      lens_note:"Les dentelles est et ouest couvrent ~3° au total. Mosaïque 2 panneaux pour l'ensemble.",
+      source:"Image : Digitized Sky Survey / ESA — CC BY 4.0", badge:"" },
+
+    { name:"Rosette — NGC 2244 en SHO", cat:"NGC 2244 · Nébuleuse en émission · ~5 200 al · Licorne", boss:false, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/rosette.jpg",
+      desc:"Nébuleuse centrée sur un amas ouvert. En palette SHO les soufflures créées par les vents stellaires des étoiles jeunes donnent un rendu spectaculaire. Terrain de jeu idéal pour maîtriser la combinaison SHO et la correction de la dominante verte (SCNR).",
+      setup:[["Instrument","Newton 150/750 + ASI294MM Pro"],["Filtres","Hα 7nm + OIII 7nm + SII 7nm"],["Pose","10 min × 30 poses / canal"],["Palette","SHO (Hubble)"],["Saison","Novembre à mars"]],
+      lens_note:"Palette SHO : SII→R, Hα→G, OIII→B. Dominante verte normale → corriger avec SCNR (mode Average Neutral, amount 0.6) dans PixInsight.",
+      source:"Image : NASA — domaine public", badge:"" },
+
+    { name:"M8 — Nébuleuse de la Lagune", cat:"Messier 8 · Nébuleuse en émission · 4 000 al · Sagittaire", boss:false, lens:"newton",
+      img:"https://raw.githubusercontent.com/Joeygoe/astroroadmap/main/targets/m8.jpg",
+      desc:"Riche en structures — nuages sombres, piliers de gaz, régions d'ionisation intense. Point faible depuis la Belgique : culmine bas sur l'horizon sud (~15–20°) — atmosphère dense, turbulence et absorption. À imager impérativement au transit méridien en été.",
+      setup:[["Instrument","Newton 150/750 + ASI294MM Pro"],["Filtres","Hα 7nm + OIII 7nm"],["Pose","10 min × 25 poses / canal"],["Contrainte","Transit méridien uniquement (~15–20° altitude max)"],["Saison","Juin à août seulement"]],
+      lens_note:"La masse d'air élevée à 15° d'altitude dégrade significativement le signal. Imager uniquement dans la fenêtre ±30 min autour du transit.",
+      source:"Image : ESO — CC BY 4.0", badge:"" },
+  ]
+};
+
+/* ═══════════════════════════════════════════════════════════
+   RENDER TARGET GRIDS
+═══════════════════════════════════════════════════════════ */
+function lensLabel(l){
+  const map={wide:'18-50mm',tele:'50-140mm',both:'Au choix',newton:'Newton 750mm'};
+  return map[l]||l;
+}
+function lensCls(l){
+  const map={wide:'wide',tele:'tele',both:'both',newton:'newton'};
+  return map[l]||'both';
+}
+
+function renderGrids(){
+  Object.entries(TARGETS).forEach(([stage, targets])=>{
+    const grid = document.getElementById(`grid-${stage}`);
+    if(!grid) return;
+    targets.forEach((t,i)=>{
+      const card = document.createElement('div');
+      const bossClass = t.badge==='bf'?'boss-final':
+                        t.badge==='b1'?'boss':
+                        t.badge==='b2'?'boss boss-s2':
+                        t.badge==='b3'?'boss boss-s3':'';
+      card.className = `target-card ${bossClass}`;
+      card.onclick = ()=> openModal(t, parseInt(stage));
+
+      const badgeLabel = t.badge==='bf'?'Boss final':
+                         t.badge?'Boss':'';
+      const badgeHtml = badgeLabel?`<span class="tc-badge ${t.badge}">${badgeLabel}</span>`:'';
+
+      card.innerHTML = `
+        <div class="tc-photo">
+          <img src="${t.img}" alt="${t.name}" loading="lazy"
+               onerror="this.parentElement.innerHTML='<div class=&quot;tc-photo-placeholder&quot;><svg width=&quot;40&quot; height=&quot;40&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;white&quot; stroke-width=&quot;1&quot;><circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;10&quot;/><path d=&quot;M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20&quot;/></svg></div>'">
+          ${badgeHtml}
+          <span class="tc-lens-badge ${lensCls(t.lens)}">${lensLabel(t.lens)}</span>
+        </div>
+        <div class="tc-body">
+          <span class="tc-cat">${t.cat}</span>
+          <div class="tc-name">${t.name}</div>
+          <div class="tc-desc">${t.desc.substring(0,120)}…</div>
+          <div class="tc-rule"></div>
+          <div class="tc-method">${t.setup[0][1]}</div>
+        </div>`;
+      grid.appendChild(card);
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════════════════════ */
+function openModal(t, stage){
+  // stage accent colors (unused placeholder removed)
+
+  document.getElementById('modal-photo').innerHTML = `
+    <img src="${t.img}" alt="${t.name}" onerror="this.style.display='none'">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>`;
+
+  document.getElementById('modal-cat').textContent = t.cat;
+  document.getElementById('modal-name').textContent = t.name;
+  document.getElementById('modal-desc').textContent = t.desc;
+
+  const setupHtml = t.setup.map(([k,v])=>
+    `<div class="modal-setup-row"><span class="msr-key">${k}</span><span class="msr-val">${v}</span></div>`
+  ).join('');
+  document.getElementById('modal-setup').innerHTML = setupHtml;
+
+  document.getElementById('modal-lens-label').textContent = 'Objectif & notes';
+  document.getElementById('modal-lens').innerHTML = `<div style="font-size:13.5px;line-height:1.65;color:var(--text);margin-top:4px;">${t.lens_note}</div>`;
+  document.getElementById('modal-source').textContent = t.source;
+
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModalBtn(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModal(e){
+  if(e.target.id==='modal') closeModalBtn();
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModalBtn(); });
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════════════ */
+renderGrids();
+
+/* Intersection observer for nav active state */
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(l=>l.classList.remove('active'));
+      const match = document.querySelector(`.nav-link[onclick*="${e.target.id}"]`);
+      if(match) match.classList.add('active');
+    }
+  });
+},{threshold:.3});
+sections.forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
